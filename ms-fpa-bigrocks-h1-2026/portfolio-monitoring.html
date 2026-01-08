@@ -11,12 +11,19 @@
     :root {
       --bg-primary: #0a0a0f;
       --bg-card: #12121a;
-      --bg-nav: #0d0d14;
+      --bg-card-hover: #1a1a25;
+      --bg-sidebar: #0d0d14;
       --text-primary: #f0f0f5;
       --text-secondary: #8a8a9a;
       --text-muted: #5a5a6a;
+      --accent-primary: #7c5cff;
+      --accent-originations: #ff6b35;
+      --accent-balance: #00d4aa;
+      --accent-lending: #4dabf7;
+      --accent-portfolio: #ffd93d;
       --accent-team: #ffd93d;
       --border: #2a2a3a;
+      --sidebar-width: 220px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,38 +36,103 @@
       min-height: 100vh;
     }
 
-    .top-nav {
-      position: sticky;
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
       top: 0;
-      background: var(--bg-nav);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      padding: 24px 0;
       z-index: 100;
-      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
     }
 
-    .back-link {
+    .sidebar-logo {
+      padding: 0 20px 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo h2 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .sidebar-logo span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 0 12px;
+    }
+
+    .nav-section {
+      margin-bottom: 24px;
+    }
+
+    .nav-section-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      padding: 0 8px;
+      margin-bottom: 8px;
+    }
+
+    .nav-link {
       display: flex;
       align-items: center;
-      gap: 8px;
-      color: var(--text-secondary);
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
       text-decoration: none;
+      color: var(--text-secondary);
       font-size: 0.9rem;
-      transition: color 0.2s;
+      transition: all 0.2s;
+      margin-bottom: 4px;
     }
 
-    .back-link:hover { color: var(--text-primary); }
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
 
-    .nav-divider { width: 1px; height: 20px; background: var(--border); }
-    .nav-title { font-weight: 600; color: var(--accent-team); }
+    .nav-link.active {
+      background: rgba(255, 217, 61, 0.15);
+      color: var(--accent-portfolio);
+    }
+
+    .nav-link .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .nav-link.overview .dot { background: var(--accent-primary); }
+    .nav-link.originations .dot { background: var(--accent-originations); }
+    .nav-link.balance .dot { background: var(--accent-balance); }
+    .nav-link.lending .dot { background: var(--accent-lending); }
+    .nav-link.portfolio .dot { background: var(--accent-portfolio); }
+
+    /* Main Content */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      min-height: 100vh;
+    }
 
     .container {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 60px 24px;
+      padding: 60px 40px;
     }
 
     header {
@@ -82,7 +154,7 @@
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 12px;
@@ -116,42 +188,31 @@
     .team-badge-label { color: var(--text-muted); }
     .team-badge-name { color: var(--accent-team); font-weight: 500; }
 
-    .coming-soon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 40px;
+    .placeholder-section {
       text-align: center;
+      padding: 80px 40px;
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: 16px;
     }
 
-    .coming-soon-icon {
+    .placeholder-icon {
       font-size: 4rem;
       margin-bottom: 24px;
     }
 
-    .coming-soon-title {
-      font-size: 1.8rem;
+    .placeholder-title {
+      font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 12px;
       color: var(--text-primary);
     }
 
-    .coming-soon-text {
+    .placeholder-text {
       font-size: 1rem;
       color: var(--text-secondary);
       max-width: 400px;
-      line-height: 1.7;
-    }
-
-    .coming-soon-badge {
-      margin-top: 32px;
-      padding: 12px 24px;
-      background: rgba(255, 217, 61, 0.1);
-      border: 1px solid rgba(255, 217, 61, 0.3);
-      border-radius: 8px;
-      color: var(--accent-team);
-      font-size: 0.9rem;
+      margin: 0 auto;
     }
 
     footer {
@@ -163,48 +224,119 @@
       font-size: 0.85rem;
     }
 
+    /* Mobile */
+    .mobile-header {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      z-index: 100;
+    }
+
+    .mobile-header h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .hamburger {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+    }
+
     @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+      .sidebar.open { transform: translateX(0); }
+      .main-content { margin-left: 0; }
+      .mobile-header { display: flex; justify-content: space-between; align-items: center; }
+      .hamburger { display: block; }
       h1 { font-size: 2.2rem; }
+      .container { padding: 40px 20px; }
     }
   </style>
 </head>
 <body>
-  <nav class="top-nav">
-    <a href="index.html" class="back-link">← Back to Overview</a>
-    <div class="nav-divider"></div>
-    <span class="nav-title">Portfolio Monitoring</span>
-  </nav>
-
-  <div class="container">
-    <header>
-      <h1>Portfolio Monitoring</h1>
-      <p class="subtitle">Analytics & Reporting</p>
-      <div class="team-info">
-        <div class="team-badge">
-          <span class="team-badge-label">Lead:</span>
-          <span class="team-badge-name">Nelson</span>
-        </div>
-        <div class="team-badge">
-          <span class="team-badge-label">Team:</span>
-          <span class="team-badge-name">Erin · Nikita</span>
-        </div>
-      </div>
-    </header>
-
-    <div class="coming-soon">
-      <div class="coming-soon-icon">🚧</div>
-      <div class="coming-soon-title">Big Rocks Coming Soon</div>
-      <div class="coming-soon-text">
-        Nelson will be adding the Portfolio Monitoring team's H1 2026 priorities in the next few days.
-      </div>
-      <div class="coming-soon-badge">
-        Check back soon for updates
-      </div>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <h2>MS FP&A & Risk</h2>
+      <span>Big Rocks H1 2026</span>
     </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-title">Navigation</div>
+        <a href="index.html" class="nav-link overview">
+          <span class="dot"></span>
+          Overview
+        </a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Teams</div>
+        <a href="originations-risk.html" class="nav-link originations">
+          <span class="dot"></span>
+          Originations Risk
+        </a>
+        <a href="balance-neobank.html" class="nav-link balance">
+          <span class="dot"></span>
+          Balance & NeoBank
+        </a>
+        <a href="lending.html" class="nav-link lending">
+          <span class="dot"></span>
+          Lending FP&A
+        </a>
+        <a href="portfolio-monitoring.html" class="nav-link portfolio active">
+          <span class="dot"></span>
+          Portfolio Monitoring
+        </a>
+      </div>
+    </nav>
+  </aside>
 
-    <footer>
-      Portfolio Monitoring · H1 2026
-    </footer>
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <h2>Portfolio Monitoring</h2>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
   </div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <header>
+        <h1>Portfolio Monitoring</h1>
+        <p class="subtitle">Analytics & Reporting</p>
+        <div class="team-info">
+          <div class="team-badge">
+            <span class="team-badge-label">Lead:</span>
+            <span class="team-badge-name">Nelson</span>
+          </div>
+          <div class="team-badge">
+            <span class="team-badge-label">Team:</span>
+            <span class="team-badge-name">Erin · Nikita</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="placeholder-section">
+        <div class="placeholder-icon">📊</div>
+        <div class="placeholder-title">Coming Soon</div>
+        <div class="placeholder-text">Nelson will provide the team's H1 2026 Big Rocks and priorities shortly.</div>
+      </div>
+
+      <footer>
+        Portfolio Monitoring · H1 2026
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+  </script>
 </body>
 </html>

@@ -12,7 +12,7 @@
       --bg-primary: #0a0a0f;
       --bg-card: #12121a;
       --bg-card-hover: #1a1a25;
-      --bg-nav: #0d0d14;
+      --bg-sidebar: #0d0d14;
       --text-primary: #f0f0f5;
       --text-secondary: #8a8a9a;
       --text-muted: #5a5a6a;
@@ -22,6 +22,7 @@
       --accent-lending: #4dabf7;
       --accent-portfolio: #ffd93d;
       --border: #2a2a3a;
+      --sidebar-width: 220px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,92 +35,103 @@
       min-height: 100vh;
     }
 
-    /* Top Navigation */
-    .top-nav {
-      position: sticky;
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
       top: 0;
-      background: var(--bg-nav);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      padding: 24px 0;
       z-index: 100;
-      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
     }
 
-    .nav-left {
+    .sidebar-logo {
+      padding: 0 20px 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo h2 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .sidebar-logo span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 0 12px;
+    }
+
+    .nav-section {
+      margin-bottom: 24px;
+    }
+
+    .nav-section-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      padding: 0 8px;
+      margin-bottom: 8px;
+    }
+
+    .nav-link {
       display: flex;
       align-items: center;
-      gap: 16px;
-    }
-
-    .nav-logo {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-primary);
-    }
-
-    .view-toggle {
-      display: flex;
-      background: rgba(255,255,255,0.05);
+      gap: 10px;
+      padding: 10px 12px;
       border-radius: 8px;
-      padding: 4px;
-    }
-
-    .view-btn {
-      padding: 8px 16px;
-      border: none;
-      background: transparent;
+      text-decoration: none;
       color: var(--text-secondary);
-      font-family: inherit;
-      font-size: 0.85rem;
-      cursor: pointer;
-      border-radius: 6px;
+      font-size: 0.9rem;
       transition: all 0.2s;
+      margin-bottom: 4px;
     }
 
-    .view-btn.active {
-      background: var(--accent-primary);
-      color: white;
-    }
-
-    .people-filter {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .people-filter.hidden { display: none; }
-
-    .person-btn {
-      padding: 6px 14px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-secondary);
-      font-family: inherit;
-      font-size: 0.8rem;
-      cursor: pointer;
-      border-radius: 20px;
-      transition: all 0.2s;
-    }
-
-    .person-btn:hover {
-      border-color: var(--accent-primary);
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.05);
       color: var(--text-primary);
     }
 
-    .person-btn.active {
-      background: var(--accent-primary);
-      border-color: var(--accent-primary);
-      color: white;
+    .nav-link.active {
+      background: rgba(124, 92, 255, 0.15);
+      color: var(--accent-primary);
     }
+
+    .nav-link .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .nav-link.overview .dot { background: var(--accent-primary); }
+    .nav-link.originations .dot { background: var(--accent-originations); }
+    .nav-link.balance .dot { background: var(--accent-balance); }
+    .nav-link.lending .dot { background: var(--accent-lending); }
+    .nav-link.portfolio .dot { background: var(--accent-portfolio); }
 
     /* Main Content */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      min-height: 100vh;
+    }
+
     .container {
-      max-width: 1300px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 60px 24px;
+      padding: 60px 40px;
     }
 
     header {
@@ -141,7 +153,7 @@
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 8px;
@@ -157,20 +169,24 @@
     }
 
     .org-info {
-      margin-top: 16px;
+      margin-top: 12px;
       font-size: 0.9rem;
       color: var(--text-muted);
     }
 
-    /* Strategic Sections */
-    .strategic-section {
-      margin-bottom: 60px;
+    /* Section Styling */
+    .section {
+      margin-bottom: 64px;
+    }
+
+    .section-header {
+      margin-bottom: 24px;
     }
 
     .section-title {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      margin-bottom: 24px;
+      margin-bottom: 8px;
       color: var(--text-primary);
       display: flex;
       align-items: center;
@@ -180,81 +196,134 @@
     .section-title::before {
       content: '';
       width: 4px;
-      height: 24px;
+      height: 28px;
       background: var(--accent-primary);
       border-radius: 2px;
     }
 
-    /* Q1 Roadmap Grid */
+    .section-intro {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 800px;
+      line-height: 1.7;
+    }
+
+    /* Big Finance Projects Grid */
+    .finance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .finance-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .finance-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-lending));
+    }
+
+    .finance-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.4);
+    }
+
+    .finance-card h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .finance-card p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .finance-card .tags {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .finance-card .tag {
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Product Roadmap Grid */
     .roadmap-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 20px;
     }
 
     .roadmap-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      transition: all 0.2s;
+      border-radius: 14px;
+      padding: 28px;
+      transition: all 0.25s;
+      display: flex;
+      flex-direction: column;
     }
 
     .roadmap-card:hover {
-      border-color: var(--accent-primary);
+      border-color: rgba(124, 92, 255, 0.4);
       transform: translateY(-2px);
     }
 
+    .roadmap-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
     .roadmap-card h4 {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--text-primary);
     }
 
     .roadmap-card p {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Finance Projects List */
-    .projects-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 12px;
-    }
-
-    .project-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px 20px;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .project-item::before {
-      content: '→';
-      color: var(--accent-primary);
-      font-weight: 600;
+      line-height: 1.65;
+      flex: 1;
     }
 
     /* Team Tiles */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
     .team-tile {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
+      border-radius: 14px;
+      padding: 24px;
       text-decoration: none;
       color: inherit;
       transition: all 0.3s;
@@ -284,7 +353,7 @@
     .team-tile.portfolio { --tile-accent: var(--accent-portfolio); }
 
     .team-name {
-      font-size: 1.3rem;
+      font-size: 1.15rem;
       font-weight: 600;
       margin-bottom: 12px;
       color: var(--text-primary);
@@ -303,58 +372,18 @@
 
     .team-arrow {
       position: absolute;
-      bottom: 24px;
-      right: 24px;
-      font-size: 1.5rem;
+      bottom: 20px;
+      right: 20px;
+      font-size: 1.3rem;
       color: var(--tile-accent);
       opacity: 0;
-      transform: translateX(-10px);
+      transform: translateX(-8px);
       transition: all 0.3s;
     }
 
     .team-tile:hover .team-arrow {
       opacity: 1;
       transform: translateX(0);
-    }
-
-    /* People View */
-    .people-view { display: none; }
-    .people-view.active { display: block; }
-    .teams-view.hidden { display: none; }
-
-    .person-section {
-      margin-bottom: 40px;
-    }
-
-    .person-header {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--accent-primary);
-      display: inline-block;
-    }
-
-    .person-projects {
-      display: grid;
-      gap: 12px;
-    }
-
-    .person-project {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 20px;
-    }
-
-    .person-project-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .person-project-team {
-      font-size: 0.8rem;
-      color: var(--text-muted);
     }
 
     footer {
@@ -366,97 +395,228 @@
       font-size: 0.85rem;
     }
 
+    /* Mobile */
+    .mobile-header {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      z-index: 100;
+    }
+
+    .mobile-header h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .hamburger {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    @media (max-width: 1024px) {
+      .finance-grid, .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+      .sidebar.open { transform: translateX(0); }
+      .main-content { margin-left: 0; }
+      .mobile-header { display: flex; justify-content: space-between; align-items: center; }
+      .hamburger { display: block; }
       h1 { font-size: 2rem; }
-      .top-nav { flex-direction: column; gap: 12px; }
-      .team-grid { grid-template-columns: 1fr; }
+      .finance-grid, .roadmap-grid, .team-grid { grid-template-columns: 1fr; }
+      .container { padding: 40px 20px; }
     }
   </style>
 </head>
 <body>
-  <nav class="top-nav">
-    <div class="nav-left">
-      <span class="nav-logo">MS FP&A & Risk</span>
-      <div class="view-toggle">
-        <button class="view-btn active" onclick="showTeamsView()">Teams</button>
-        <button class="view-btn" onclick="showPeopleView()">People</button>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <h2>MS FP&A & Risk</h2>
+      <span>Big Rocks H1 2026</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-title">Navigation</div>
+        <a href="index.html" class="nav-link overview active">
+          <span class="dot"></span>
+          Overview
+        </a>
       </div>
-    </div>
-    <div class="people-filter hidden" id="peopleFilter">
-      <button class="person-btn" onclick="filterPerson('all')">All</button>
-      <button class="person-btn" onclick="filterPerson('Shaunak')">Shaunak</button>
-      <button class="person-btn" onclick="filterPerson('Khasim')">Khasim</button>
-      <button class="person-btn" onclick="filterPerson('Negin')">Negin</button>
-      <button class="person-btn" onclick="filterPerson('David')">David</button>
-      <button class="person-btn" onclick="filterPerson('Michael')">Michael</button>
-      <button class="person-btn" onclick="filterPerson('Lucas')">Lucas</button>
-      <button class="person-btn" onclick="filterPerson('Seb')">Seb</button>
-      <button class="person-btn" onclick="filterPerson('Milan')">Milan</button>
-      <button class="person-btn" onclick="filterPerson('Nelson')">Nelson</button>
-      <button class="person-btn" onclick="filterPerson('Erin')">Erin</button>
-      <button class="person-btn" onclick="filterPerson('Nikita')">Nikita</button>
-    </div>
-  </nav>
+      <div class="nav-section">
+        <div class="nav-section-title">Teams</div>
+        <a href="originations-risk.html" class="nav-link originations">
+          <span class="dot"></span>
+          Originations Risk
+        </a>
+        <a href="balance-neobank.html" class="nav-link balance">
+          <span class="dot"></span>
+          Balance & NeoBank
+        </a>
+        <a href="lending.html" class="nav-link lending">
+          <span class="dot"></span>
+          Lending FP&A
+        </a>
+        <a href="portfolio-monitoring.html" class="nav-link portfolio">
+          <span class="dot"></span>
+          Portfolio Monitoring
+        </a>
+      </div>
+    </nav>
+  </aside>
 
-  <div class="container">
-    <header>
-      <h1>Big Rocks H1 2026</h1>
-      <p class="subtitle">Merchant Financial Services – FP&A and Risk</p>
-      <p class="org-info">Led by Raymond Lee</p>
-    </header>
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <h2>MS FP&A & Risk</h2>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  </div>
 
-    <!-- Teams View -->
-    <div class="teams-view" id="teamsView">
-      <!-- Q1 Product Roadmap -->
-      <section class="strategic-section">
-        <h2 class="section-title">Q1'26 Product Roadmap</h2>
-        <div class="roadmap-grid">
-          <div class="roadmap-card">
-            <h4>🏦 Standalone Neobank</h4>
-            <p>A modern banking experience for SMBs regardless of whether they use Shopify as their commerce platform</p>
-          </div>
-          <div class="roadmap-card">
-            <h4>💰 Balance Expansion</h4>
-            <p>Win growing SMBs (Plus in US) and expand beyond US. Make Balance the primary business bank account.</p>
-          </div>
-          <div class="roadmap-card">
-            <h4>📈 Lending Transformation</h4>
-            <p>Maximize conversion and funding to merchants with the greatest overall LTV impact, not just loan economics.</p>
-          </div>
-          <div class="roadmap-card">
-            <h4>🔗 Unified Borrowing Line</h4>
-            <p>Powers credit card and cash withdrawals giving merchants flexibility on how they use borrowing capacity.</p>
-          </div>
-          <div class="roadmap-card">
-            <h4>⚙️ Lending Fundamentals</h4>
-            <p>Automate offer gen, ship new GMV & Risk Model, expand Risk Based Pricing to all merchants.</p>
-          </div>
-          <div class="roadmap-card">
-            <h4>🔒 Banking Security</h4>
-            <p>State of the art platform to protect merchant money and Shopify from fraud losses and compliance risk.</p>
-          </div>
-        </div>
-      </section>
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <header>
+        <h1>Big Rocks H1 2026</h1>
+        <p class="subtitle">Merchant Financial Services – FP&A and Risk</p>
+        <p class="org-info">Led by Raymond Lee</p>
+      </header>
 
       <!-- Big Finance Projects -->
-      <section class="strategic-section">
-        <h2 class="section-title">Big Finance Projects</h2>
-        <div class="projects-list">
-          <div class="project-item">Return framework revamp (Capital Fixed, Flex, Credit, Unified Lending)</div>
-          <div class="project-item">RBP for all merchants + LTV in pricing + automated offer gen</div>
-          <div class="project-item">Growth driver accounting framework for Lending renewals</div>
-          <div class="project-item">Write-off attribution logic (merchant vs product level)</div>
-          <div class="project-item">Risk Group bridge to Loss Rates (Capital & Credit)</div>
-          <div class="project-item">Unified financial risk team – expanding beyond FS</div>
-          <div class="project-item">Capital model Python automation (Cappy)</div>
-          <div class="project-item">Stripe Misbilling Deep Dive</div>
-          <div class="project-item">Balance APY Attribution Reporting</div>
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Big Finance Projects</h2>
+          <p class="section-intro">Cross-functional initiatives spanning pricing, risk modeling, financial infrastructure, and automation. These projects drive foundational improvements across all lending and banking products.</p>
+        </div>
+        <div class="finance-grid">
+          <div class="finance-card">
+            <h4>Return Framework Revamp</h4>
+            <p>Unified return framework across Capital Fixed, Flex, Credit, and Unified Lending. Multi-product financial model refresh.</p>
+            <div class="tags">
+              <span class="tag">All Teams</span>
+              <span class="tag">H1</span>
+            </div>
+          </div>
+          <div class="finance-card">
+            <h4>RBP + LTV in Pricing</h4>
+            <p>Risk-based pricing rollout by geo (US/CA Jan, UK Feb, EU Mar) plus LTV integration assessment in Feb-Mar.</p>
+            <div class="tags">
+              <span class="tag">Shaunak</span>
+              <span class="tag">Jan-Mar</span>
+            </div>
+          </div>
+          <div class="finance-card">
+            <h4>Growth Accounting Framework</h4>
+            <p>New methodology to measure Lending performance for renewals. Dashboard build and cross-team alignment.</p>
+            <div class="tags">
+              <span class="tag">Lucas</span>
+              <span class="tag">Jan</span>
+            </div>
+          </div>
+          <div class="finance-card">
+            <h4>Write-off Attribution</h4>
+            <p>Proper allocation of dispute costs across credit and balance cards. Merchant vs product level logic.</p>
+            <div class="tags">
+              <span class="tag">David · Michael</span>
+              <span class="tag">TBD</span>
+            </div>
+          </div>
+          <div class="finance-card">
+            <h4>Risk Group → Loss Rates</h4>
+            <p>CDR curve model with terminal CDR estimation. Quarterly auto-refresh using rolling 24-month vintage window.</p>
+            <div class="tags">
+              <span class="tag">Negin</span>
+              <span class="tag">Jan</span>
+            </div>
+          </div>
+          <div class="finance-card">
+            <h4>Unified Financial Risk Team</h4>
+            <p>Expanding team coverage and capabilities beyond Financial Services into broader Shopify risk.</p>
+            <div class="tags">
+              <span class="tag">Cross-org</span>
+              <span class="tag">H1</span>
+            </div>
+          </div>
+          <div class="finance-card">
+            <h4>Capital Model Python (Cappy)</h4>
+            <p>Converting spreadsheet financial model into Python. Improved reliability, version control, and automation.</p>
+            <div class="tags">
+              <span class="tag">Seb</span>
+              <span class="tag">H1</span>
+            </div>
+          </div>
+          <div class="finance-card">
+            <h4>Stripe APY Attribution</h4>
+            <p>APY Sources & Uses reporting per latest MSA amendment. Shows how APY proceeds are allocated to merchants.</p>
+            <div class="tags">
+              <span class="tag">David · Michael</span>
+              <span class="tag">TBD</span>
+            </div>
+          </div>
+          <div class="finance-card">
+            <h4>Balance APY Reporting</h4>
+            <p>Comprehensive attribution reporting for Balance interest payments. Breakdown by merchant segment and source.</p>
+            <div class="tags">
+              <span class="tag">David · Michael</span>
+              <span class="tag">TBD</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Team Tiles -->
-      <section class="strategic-section">
-        <h2 class="section-title">Team Big Rocks</h2>
+      <!-- Q1 Product Roadmap -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Q1'26 Product Roadmap</h2>
+          <p class="section-intro">Merchant Financial Services is building the complete financial platform for SMBs – from banking and lending to unified borrowing lines and fraud protection.</p>
+        </div>
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <div class="roadmap-icon">🏦</div>
+            <h4>Standalone Neobank</h4>
+            <p>A modern banking experience for SMBs regardless of whether they use Shopify as their commerce platform. Expanding our TAM beyond existing merchants.</p>
+          </div>
+          <div class="roadmap-card">
+            <div class="roadmap-icon">💰</div>
+            <h4>Balance Expansion</h4>
+            <p>Win growing SMBs (Plus in US) and expand beyond US. Make Balance the primary business bank account with deposit growth initiatives.</p>
+          </div>
+          <div class="roadmap-card">
+            <div class="roadmap-icon">📈</div>
+            <h4>Lending Transformation</h4>
+            <p>Maximize conversion and funding to merchants with the greatest overall LTV impact, not just loan economics. Growth accounting methodology shift.</p>
+          </div>
+          <div class="roadmap-card">
+            <div class="roadmap-icon">🔗</div>
+            <h4>Unified Borrowing Line</h4>
+            <p>Powers credit card and cash withdrawals, giving merchants flexibility on how they use borrowing capacity. Single line, multiple products.</p>
+          </div>
+          <div class="roadmap-card">
+            <div class="roadmap-icon">⚙️</div>
+            <h4>Lending Fundamentals</h4>
+            <p>Automate offer generation, ship new GMV & Risk Model, expand Risk Based Pricing to all merchants. Infrastructure that scales.</p>
+          </div>
+          <div class="roadmap-card">
+            <div class="roadmap-icon">🔒</div>
+            <h4>Banking Security</h4>
+            <p>State of the art platform to protect merchant money and Shopify from fraud losses and compliance risk. Comprehensive fraud vectors overview.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team Big Rocks -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Team Big Rocks</h2>
+          <p class="section-intro">Explore detailed priorities for each team within Merchant Services FP&A and Risk.</p>
+        </div>
         <div class="team-grid">
           <a href="originations-risk.html" class="team-tile originations">
             <div class="team-name">Originations Risk</div>
@@ -484,109 +644,16 @@
           </a>
         </div>
       </section>
-    </div>
 
-    <!-- People View -->
-    <div class="people-view" id="peopleView">
-      <p style="color: var(--text-secondary); text-align: center; padding: 40px;">
-        Select a person from the filter above to see their assigned projects across all teams.
-      </p>
+      <footer>
+        Merchant Financial Services – FP&A and Risk · H1 2026
+      </footer>
     </div>
-
-    <footer>
-      Merchant Financial Services – FP&A and Risk · H1 2026
-    </footer>
-  </div>
+  </main>
 
   <script>
-    // All projects data with contributors
-    const allProjects = [
-      // Originations Risk
-      { title: "Pricing", team: "Originations Risk", contributors: ["Shaunak"], timeline: "H1" },
-      { title: "Offer Waterfall", team: "Originations Risk", contributors: ["Khasim", "Negin"], timeline: "Jan-Feb" },
-      { title: "Credit Card Model", team: "Originations Risk", contributors: ["Khasim"], timeline: "Jan-Jun" },
-      { title: "Urgent Circumstances", team: "Originations Risk", contributors: ["Negin", "Khasim"], timeline: "Jan" },
-      { title: "Experiments", team: "Originations Risk", contributors: ["Khasim", "Shaunak"], timeline: "Jan" },
-      { title: "Underwriting Support", team: "Originations Risk", contributors: ["Negin"], timeline: "Jan-Mar" },
-      { title: "WebBank Contract", team: "Originations Risk", contributors: ["Negin"], timeline: "Jan-May" },
-      { title: "CDR Curve Model", team: "Originations Risk", contributors: ["Negin"], timeline: "Jan" },
-      { title: "Python Automation", team: "Originations Risk", contributors: ["Khasim"], timeline: "Apr-May" },
-      { title: "AI Workflows", team: "Originations Risk", contributors: ["Khasim"], timeline: "Jan-Feb" },
-      // Balance & NeoBank
-      { title: "Credit Model Transition", team: "Balance & NeoBank", contributors: ["David", "Michael"], timeline: "TBD" },
-      { title: "Unified Lending Architecture", team: "Balance & NeoBank", contributors: ["David", "Michael"], timeline: "TBD" },
-      { title: "Issuing Dispute Costs", team: "Balance & NeoBank", contributors: ["David", "Michael"], timeline: "TBD" },
-      { title: "APY Sources & Uses Reporting", team: "Balance & NeoBank", contributors: ["David", "Michael"], timeline: "TBD" },
-      { title: "Account for New Costs", team: "Balance & NeoBank", contributors: ["David", "Michael"], timeline: "TBD" },
-      { title: "Fraud Vectors Overview", team: "Balance & NeoBank", contributors: ["David", "Michael"], timeline: "TBD" },
-      { title: "Shop Ads Billing", team: "Balance & NeoBank", contributors: ["David", "Michael"], timeline: "TBD" },
-      { title: "Billing COGS Forecast", team: "Balance & NeoBank", contributors: ["David", "Michael"], timeline: "TBD" },
-      { title: "Chargeback Monitoring", team: "Balance & NeoBank", contributors: ["David", "Michael"], timeline: "TBD" },
-      // Lending FP&A
-      { title: "Small Merchant Pricing", team: "Lending FP&A", contributors: ["Lucas"], timeline: "Jan" },
-      { title: "0% APR Small Merchant Promo", team: "Lending FP&A", contributors: ["Lucas"], timeline: "Mar" },
-      { title: "Growth Accounting Methodology", team: "Lending FP&A", contributors: ["Lucas"], timeline: "Jan" },
-      { title: "Lending LTV Model MVP", team: "Lending FP&A", contributors: ["Lucas"], timeline: "Jan" },
-      { title: "Lending Goals & Target Setting", team: "Lending FP&A", contributors: ["Lucas", "Milan", "Seb"], timeline: "Jan" },
-      { title: "Upmarket Growth Initiatives", team: "Lending FP&A", contributors: ["Milan"], timeline: "Q1" },
-      { title: "Unified Lending", team: "Lending FP&A", contributors: ["Milan"], timeline: "H1" },
-      { title: "EU Expansion - France", team: "Lending FP&A", contributors: ["Milan"], timeline: "Q1" },
-      { title: "Gsheets Finance Model Rebuild", team: "Lending FP&A", contributors: ["Milan"], timeline: "Q1" },
-      { title: "ALM 2.0 Model", team: "Lending FP&A", contributors: ["Seb"], timeline: "Jan" },
-      { title: "Capital Financial Model (Cappy)", team: "Lending FP&A", contributors: ["Seb"], timeline: "H1" },
-      { title: "Complete Flex", team: "Lending FP&A", contributors: ["Seb"], timeline: "Q1" },
-      { title: "FS Performance Dashboards", team: "Lending FP&A", contributors: ["Seb"], timeline: "Q1" },
-      // Portfolio Monitoring - TBD
-      { title: "Projects Coming Soon", team: "Portfolio Monitoring", contributors: ["Nelson", "Erin", "Nikita"], timeline: "TBD" },
-    ];
-
-    function showTeamsView() {
-      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.view-btn')[0].classList.add('active');
-      document.getElementById('teamsView').classList.remove('hidden');
-      document.getElementById('peopleView').classList.remove('active');
-      document.getElementById('peopleFilter').classList.add('hidden');
-    }
-
-    function showPeopleView() {
-      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.view-btn')[1].classList.add('active');
-      document.getElementById('teamsView').classList.add('hidden');
-      document.getElementById('peopleView').classList.add('active');
-      document.getElementById('peopleFilter').classList.remove('hidden');
-    }
-
-    function filterPerson(person) {
-      document.querySelectorAll('.person-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
-      
-      const container = document.getElementById('peopleView');
-      
-      if (person === 'all') {
-        container.innerHTML = '<p style="color: var(--text-secondary); text-align: center; padding: 40px;">Select a person from the filter above to see their assigned projects across all teams.</p>';
-        return;
-      }
-
-      const personProjects = allProjects.filter(p => p.contributors.includes(person));
-      
-      if (personProjects.length === 0) {
-        container.innerHTML = `<p style="color: var(--text-secondary); text-align: center; padding: 40px;">No projects found for ${person}.</p>`;
-        return;
-      }
-
-      let html = `<div class="person-section">
-        <h3 class="person-header">${person}'s Projects</h3>
-        <div class="person-projects">`;
-      
-      personProjects.forEach(p => {
-        html += `<div class="person-project">
-          <div class="person-project-title">${p.title}</div>
-          <div class="person-project-team">${p.team} · ${p.timeline}</div>
-        </div>`;
-      });
-
-      html += '</div></div>';
-      container.innerHTML = html;
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
     }
   </script>
 </body>
