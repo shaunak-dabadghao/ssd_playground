@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balance & NeoBank – Big Rocks H1 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-card: #12121a;
+      --bg-card-hover: #1a1a25;
+      --bg-nav: #0d0d14;
+      --text-primary: #f0f0f5;
+      --text-secondary: #8a8a9a;
+      --text-muted: #5a5a6a;
+      --accent-team: #00d4aa;
+      --accent-credit: #7c5cff;
+      --accent-balance: #4dabf7;
+      --accent-fraud: #ff4757;
+      --accent-billing: #ffd93d;
+      --border: #2a2a3a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      background: var(--bg-nav);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--text-primary); }
+
+    .nav-divider { width: 1px; height: 20px; background: var(--border); }
+    .nav-title { font-weight: 600; color: var(--accent-team); }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(0, 212, 170, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, #a0a0b0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle { font-size: 1.1rem; color: var(--text-secondary); }
+
+    .team-info {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .team-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(0, 212, 170, 0.1);
+      border: 1px solid rgba(0, 212, 170, 0.3);
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    .team-badge-label { color: var(--text-muted); }
+    .team-badge-name { color: var(--accent-team); font-weight: 500; }
+
+    .tbd-notice {
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 8px;
+      padding: 12px 20px;
+      margin-bottom: 40px;
+      font-size: 0.9rem;
+      color: #ffd93d;
+      text-align: center;
+    }
+
+    .category-section {
+      margin-bottom: 48px;
+    }
+
+    .category-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--category-accent);
+    }
+
+    .category-title::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: var(--category-accent);
+      border-radius: 2px;
+    }
+
+    .category-section.credit { --category-accent: var(--accent-credit); }
+    .category-section.balance { --category-accent: var(--accent-balance); }
+    .category-section.fraud { --category-accent: var(--accent-fraud); }
+    .category-section.billing { --category-accent: var(--accent-billing); }
+
+    .rocks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .rock-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s;
+      border-left: 3px solid var(--category-accent);
+    }
+
+    .rock-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .rock-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .rock-description {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .contributors {
+      margin-top: 16px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .contributor {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .rocks-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="back-link">← Back to Overview</a>
+    <div class="nav-divider"></div>
+    <span class="nav-title">Balance & NeoBank</span>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Balance & NeoBank</h1>
+      <p class="subtitle">FP&A Coverage</p>
+      <div class="team-info">
+        <div class="team-badge">
+          <span class="team-badge-label">Lead:</span>
+          <span class="team-badge-name">David</span>
+        </div>
+        <div class="team-badge">
+          <span class="team-badge-label">Team:</span>
+          <span class="team-badge-name">Michael</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="tbd-notice">
+      ⏳ Priority and timeline tags pending – David to provide
+    </div>
+
+    <!-- Credit Section -->
+    <section class="category-section credit">
+      <h2 class="category-title">Credit</h2>
+      <div class="rocks-grid">
+        <div class="rock-card">
+          <div class="rock-title">Model Transition</div>
+          <div class="rock-description">Transition credit model ownership and responsibilities</div>
+          <div class="contributors">
+            <span class="contributor">David</span>
+            <span class="contributor">Michael</span>
+          </div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-title">Unified Lending Architecture</div>
+          <div class="rock-description">Support the new unified lending product architecture</div>
+          <div class="contributors">
+            <span class="contributor">David</span>
+            <span class="contributor">Michael</span>
+          </div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-title">Issuing Dispute Costs</div>
+          <div class="rock-description">Proper allocation of dispute costs across credit and balance cards</div>
+          <div class="contributors">
+            <span class="contributor">David</span>
+            <span class="contributor">Michael</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Balance Section -->
+    <section class="category-section balance">
+      <h2 class="category-title">Balance</h2>
+      <div class="rocks-grid">
+        <div class="rock-card">
+          <div class="rock-title">APY Sources & Uses Reporting</div>
+          <div class="rock-description">Reporting required by Stripe per the latest MSA amendment to show how APY proceeds are allocated to merchants</div>
+          <div class="contributors">
+            <span class="contributor">David</span>
+            <span class="contributor">Michael</span>
+          </div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-title">Account for New Costs</div>
+          <div class="rock-description">Same Day ACH, Intl Payments, Issuing Dispute Fees, Domestic Outbound Wire Costs, Cash & Check Accept Fees</div>
+          <div class="contributors">
+            <span class="contributor">David</span>
+            <span class="contributor">Michael</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fraud/Risk Section -->
+    <section class="category-section fraud">
+      <h2 class="category-title">Fraud/Risk Priorities</h2>
+      <div class="rocks-grid">
+        <div class="rock-card">
+          <div class="rock-title">Fraud Vectors Overview</div>
+          <div class="rock-description">Comprehensive view of fraud vectors across products</div>
+          <div class="contributors">
+            <span class="contributor">David</span>
+            <span class="contributor">Michael</span>
+          </div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-title">Fraud Documentation</div>
+          <div class="rock-description">Link to document explaining various types of fraud encountered across products</div>
+          <div class="contributors">
+            <span class="contributor">David</span>
+            <span class="contributor">Michael</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Billing Section -->
+    <section class="category-section billing">
+      <h2 class="category-title">Billing</h2>
+      <div class="rocks-grid">
+        <div class="rock-card">
+          <div class="rock-title">Shop Ads Billing Integration</div>
+          <div class="rock-description">Incorporate Shop Ads into billing systems</div>
+          <div class="contributors">
+            <span class="contributor">David</span>
+            <span class="contributor">Michael</span>
+          </div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-title">Billing COGS Forecast</div>
+          <div class="rock-description">Forecast billing COGS including Shop Ads</div>
+          <div class="contributors">
+            <span class="contributor">David</span>
+            <span class="contributor">Michael</span>
+          </div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-title">Chargeback Monitoring</div>
+          <div class="rock-description">Regular monitoring and remediation of billing chargebacks</div>
+          <div class="contributors">
+            <span class="contributor">David</span>
+            <span class="contributor">Michael</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Balance & NeoBank · H1 2026
+    </footer>
+  </div>
+</body>
+</html>

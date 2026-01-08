@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lending FP&A – Big Rocks H1 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-card: #12121a;
+      --bg-card-hover: #1a1a25;
+      --bg-nav: #0d0d14;
+      --text-primary: #f0f0f5;
+      --text-secondary: #8a8a9a;
+      --text-muted: #5a5a6a;
+      --accent-team: #4dabf7;
+      --accent-lucas: #ff6b35;
+      --accent-milan: #00d4aa;
+      --accent-seb: #7c5cff;
+      --accent-shared: #ffd93d;
+      --border: #2a2a3a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      background: var(--bg-nav);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--text-primary); }
+
+    .nav-divider { width: 1px; height: 20px; background: var(--border); }
+    .nav-title { font-weight: 600; color: var(--accent-team); }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(77, 171, 247, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, #a0a0b0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle { font-size: 1.1rem; color: var(--text-secondary); }
+
+    .team-info {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .team-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(77, 171, 247, 0.1);
+      border: 1px solid rgba(77, 171, 247, 0.3);
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    .team-badge-label { color: var(--text-muted); }
+    .team-badge-name { color: var(--accent-team); font-weight: 500; }
+
+    .person-section {
+      margin-bottom: 48px;
+    }
+
+    .person-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .person-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--bg-primary);
+    }
+
+    .person-section.lucas .person-avatar { background: var(--accent-lucas); }
+    .person-section.milan .person-avatar { background: var(--accent-milan); }
+    .person-section.seb .person-avatar { background: var(--accent-seb); }
+    .person-section.shared .person-avatar { background: var(--accent-shared); }
+
+    .person-name {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .rocks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .rock-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rock-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--person-accent);
+    }
+
+    .person-section.lucas .rock-card { --person-accent: var(--accent-lucas); }
+    .person-section.milan .rock-card { --person-accent: var(--accent-milan); }
+    .person-section.seb .rock-card { --person-accent: var(--accent-seb); }
+    .person-section.shared .rock-card { --person-accent: var(--accent-shared); }
+
+    .rock-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .rock-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .rock-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .timeline-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      background: var(--person-accent);
+      color: var(--bg-primary);
+      border-radius: 4px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .rock-description {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .shared-badge {
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .rocks-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="back-link">← Back to Overview</a>
+    <div class="nav-divider"></div>
+    <span class="nav-title">Lending FP&A</span>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Lending FP&A</h1>
+      <p class="subtitle">Financial Planning & Analysis</p>
+      <div class="team-info">
+        <div class="team-badge">
+          <span class="team-badge-label">Lead:</span>
+          <span class="team-badge-name">Lucas</span>
+        </div>
+        <div class="team-badge">
+          <span class="team-badge-label">Team:</span>
+          <span class="team-badge-name">Seb · Milan</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Shared Project -->
+    <section class="person-section shared">
+      <div class="person-header">
+        <div class="person-avatar">★</div>
+        <div class="person-name">Team Collaboration</div>
+      </div>
+      <div class="rocks-grid">
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">Lending Goals & Target Setting</div>
+            <span class="timeline-badge">Jan</span>
+          </div>
+          <div class="rock-description">Setting 2026 goals across Lending R&D, Marketing and Sales. Building dashboard to monitor progress.</div>
+          <div class="shared-badge">Lucas · Milan · Seb</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lucas Section -->
+    <section class="person-section lucas">
+      <div class="person-header">
+        <div class="person-avatar">L</div>
+        <div class="person-name">Lucas</div>
+      </div>
+      <div class="rocks-grid">
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">Small Merchant Pricing</div>
+            <span class="timeline-badge">Jan</span>
+          </div>
+          <div class="rock-description">Results read out & LTV impact analysis</div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">0% APR Small Merchant Promo</div>
+            <span class="timeline-badge">Mar</span>
+          </div>
+          <div class="rock-description">Business case & LTV impact assessment</div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">Growth Accounting Methodology</div>
+            <span class="timeline-badge">Jan</span>
+          </div>
+          <div class="rock-description">Align on new methodology to measure performance + dashboards</div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">Lending LTV Model MVP</div>
+            <span class="timeline-badge">Jan</span>
+          </div>
+          <div class="rock-description">Working with Data Science to build Lending LTV model</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Milan Section -->
+    <section class="person-section milan">
+      <div class="person-header">
+        <div class="person-avatar">M</div>
+        <div class="person-name">Milan</div>
+      </div>
+      <div class="rocks-grid">
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">Upmarket Growth Initiatives</div>
+            <span class="timeline-badge">Q1</span>
+          </div>
+          <div class="rock-description">Expand 25% remittance rate upmarket, increase max deal size >$2M, optimize manual underwriting criteria based on risk</div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">Unified Lending</div>
+            <span class="timeline-badge">H1</span>
+          </div>
+          <div class="rock-description">Shipping new lending product – business case, experiment, financials</div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">EU Expansion - France</div>
+            <span class="timeline-badge">Q1</span>
+          </div>
+          <div class="rock-description">Finishing EU expansion with France launch</div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">Gsheets Finance Model Rebuild</div>
+            <span class="timeline-badge">Q1</span>
+          </div>
+          <div class="rock-description">Rebuilding Gsheets Finance Model for new product structures</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seb Section -->
+    <section class="person-section seb">
+      <div class="person-header">
+        <div class="person-avatar">S</div>
+        <div class="person-name">Seb</div>
+      </div>
+      <div class="rocks-grid">
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">ALM 2.0 Model</div>
+            <span class="timeline-badge">Jan</span>
+          </div>
+          <div class="rock-description">SQL model to track Lending Annualized Loan Margin</div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">Capital Financial Model "Cappy"</div>
+            <span class="timeline-badge">H1</span>
+          </div>
+          <div class="rock-description">Converting spreadsheet financial model into Python</div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">Complete Flex</div>
+            <span class="timeline-badge">Q1</span>
+          </div>
+          <div class="rock-description">Performance read out on November Launch; Rolling out to more merchants (geos and upmarket)</div>
+        </div>
+        <div class="rock-card">
+          <div class="rock-header">
+            <div class="rock-title">FS Performance Dashboards</div>
+            <span class="timeline-badge">Q1</span>
+          </div>
+          <div class="rock-description">Refactoring Financial Services Performance Dashboards – consolidating dashboards and KPIs to better measure Lending performance</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Lending FP&A · H1 2026
+    </footer>
+  </div>
+</body>
+</html>
