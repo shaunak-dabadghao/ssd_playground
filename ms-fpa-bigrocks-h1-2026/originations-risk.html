@@ -367,6 +367,132 @@
       font-size: 0.85rem;
     }
 
+    /* Feedback Section */
+    .feedback-section {
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: var(--accent-originations);
+      border-radius: 2px;
+    }
+
+    .section-intro {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 800px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .feedback-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .feedback-form textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+      margin-bottom: 12px;
+    }
+
+    .feedback-form textarea:focus {
+      outline: none;
+      border-color: var(--accent-originations);
+    }
+
+    .feedback-form textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .feedback-form button {
+      padding: 10px 24px;
+      background: var(--accent-originations);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .feedback-form button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .feedback-form button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .feedback-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feedback-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .feedback-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .feedback-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-originations);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: white;
+    }
+
+    .feedback-meta { flex: 1; }
+    .feedback-author { font-weight: 500; color: var(--text-primary); font-size: 0.9rem; }
+    .feedback-time { font-size: 0.75rem; color: var(--text-muted); }
+    .feedback-content { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+    .feedback-empty, .feedback-loading { text-align: center; padding: 40px; color: var(--text-muted); }
+
     /* Mobile */
     .mobile-header {
       display: none;
@@ -789,16 +915,100 @@
         </div>
       </div>
 
+      <!-- Feedback Section -->
+      <section class="feedback-section">
+        <h2 class="section-title">Feedback & Suggestions</h2>
+        <p class="section-intro">Help us improve this page. Share your thoughts on structure, content, or priorities.</p>
+        
+        <div class="feedback-form">
+          <textarea id="feedbackInput" placeholder="Share your feedback or suggestions..."></textarea>
+          <button id="submitFeedback" onclick="submitFeedback()">Submit Feedback</button>
+        </div>
+
+        <div id="feedbackList" class="feedback-list">
+          <div class="feedback-loading">Loading feedback...</div>
+        </div>
+      </section>
+
       <footer>
         Originations Risk · H1 2026
       </footer>
     </div>
   </main>
 
+  <script src="/client/quick.js"></script>
   <script>
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('open');
     }
+
+    const PAGE_ID = 'originations-risk';
+    let currentUser = null;
+    let feedbackCollection = null;
+
+    async function initFeedback() {
+      try {
+        currentUser = await quick.id.waitForUser();
+        feedbackCollection = quick.db.collection('feedback');
+        await loadFeedback();
+        feedbackCollection.subscribe({
+          onCreate: (doc) => { if (doc.page === PAGE_ID) addFeedbackToList(doc, true); }
+        });
+      } catch (error) {
+        document.getElementById('feedbackList').innerHTML = '<div class="feedback-empty">Unable to load feedback.</div>';
+      }
+    }
+
+    async function loadFeedback() {
+      const feedback = await feedbackCollection.where({ page: PAGE_ID }).find();
+      const listEl = document.getElementById('feedbackList');
+      if (feedback.length === 0) {
+        listEl.innerHTML = '<div class="feedback-empty">No feedback yet. Be the first!</div>';
+        return;
+      }
+      feedback.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      listEl.innerHTML = '';
+      feedback.forEach(item => addFeedbackToList(item, false));
+    }
+
+    function addFeedbackToList(item, prepend) {
+      const listEl = document.getElementById('feedbackList');
+      const emptyMsg = listEl.querySelector('.feedback-empty');
+      if (emptyMsg) emptyMsg.remove();
+      const initials = item.authorName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+      const timeAgo = getTimeAgo(new Date(item.created_at));
+      const el = document.createElement('div');
+      el.className = 'feedback-item';
+      el.innerHTML = `<div class="feedback-header"><div class="feedback-avatar">${initials}</div><div class="feedback-meta"><div class="feedback-author">${item.authorName}</div><div class="feedback-time">${timeAgo}</div></div></div><div class="feedback-content">${escapeHtml(item.content)}</div>`;
+      prepend ? listEl.prepend(el) : listEl.appendChild(el);
+    }
+
+    async function submitFeedback() {
+      const input = document.getElementById('feedbackInput');
+      const button = document.getElementById('submitFeedback');
+      const content = input.value.trim();
+      if (!content) return;
+      button.disabled = true;
+      button.textContent = 'Submitting...';
+      try {
+        await feedbackCollection.create({ page: PAGE_ID, content, authorName: currentUser.fullName || currentUser.email, authorEmail: currentUser.email });
+        input.value = '';
+      } catch (e) { alert('Failed to submit feedback.'); }
+      button.disabled = false;
+      button.textContent = 'Submit Feedback';
+    }
+
+    function getTimeAgo(date) {
+      const s = Math.floor((new Date() - date) / 1000);
+      if (s < 60) return 'Just now';
+      if (s < 3600) return Math.floor(s / 60) + ' min ago';
+      if (s < 86400) return Math.floor(s / 3600) + ' hours ago';
+      if (s < 604800) return Math.floor(s / 86400) + ' days ago';
+      return date.toLocaleDateString();
+    }
+
+    function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+    initFeedback();
   </script>
 </body>
 </html>
