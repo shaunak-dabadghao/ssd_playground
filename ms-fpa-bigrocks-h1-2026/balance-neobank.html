@@ -277,6 +277,68 @@
       color: var(--text-muted);
     }
 
+    .rock-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .rock-badges {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .priority-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .priority-badge.top {
+      background: rgba(255, 107, 53, 0.2);
+      color: #ff8c5a;
+    }
+
+    .priority-badge.medium {
+      background: rgba(255, 217, 61, 0.2);
+      color: #ffd93d;
+    }
+
+    .priority-badge.low {
+      background: rgba(138, 138, 154, 0.2);
+      color: #8a8a9a;
+    }
+
+    .timeline-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      background: var(--category-accent);
+      color: #0a0a0f;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .rock-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--accent-fraud);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .rock-link:hover {
+      opacity: 0.8;
+    }
+
     footer {
       text-align: center;
       margin-top: 80px;
@@ -406,16 +468,18 @@
         </div>
       </header>
 
-      <div class="tbd-notice">
-        ⏳ Priority and timeline tags pending – David to provide
-      </div>
-
       <!-- Credit Section -->
       <section class="category-section credit">
         <h2 class="category-title">Credit</h2>
         <div class="rocks-grid">
           <div class="rock-card">
-            <div class="rock-title">Model Transition</div>
+            <div class="rock-header">
+              <div class="rock-title">Model Transition</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge medium">MEDIUM</span>
+              </div>
+            </div>
             <div class="rock-description">Transition credit model ownership and responsibilities</div>
             <div class="contributors">
               <span class="contributor">David</span>
@@ -423,7 +487,13 @@
             </div>
           </div>
           <div class="rock-card">
-            <div class="rock-title">Unified Lending Architecture</div>
+            <div class="rock-header">
+              <div class="rock-title">Unified Lending Architecture</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q2+</span>
+                <span class="priority-badge top">TOP</span>
+              </div>
+            </div>
             <div class="rock-description">Support the new unified lending product architecture</div>
             <div class="contributors">
               <span class="contributor">David</span>
@@ -431,7 +501,13 @@
             </div>
           </div>
           <div class="rock-card">
-            <div class="rock-title">Issuing Dispute Costs</div>
+            <div class="rock-header">
+              <div class="rock-title">Issuing Dispute Costs</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge top">TOP</span>
+              </div>
+            </div>
             <div class="rock-description">Proper allocation of dispute costs across credit and balance cards</div>
             <div class="contributors">
               <span class="contributor">David</span>
@@ -446,7 +522,13 @@
         <h2 class="category-title">Balance</h2>
         <div class="rocks-grid">
           <div class="rock-card">
-            <div class="rock-title">APY Sources & Uses Reporting</div>
+            <div class="rock-header">
+              <div class="rock-title">APY Sources & Uses Reporting</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge top">TOP</span>
+              </div>
+            </div>
             <div class="rock-description">Reporting required by Stripe per the latest MSA amendment to show how APY proceeds are allocated to merchants</div>
             <div class="contributors">
               <span class="contributor">David</span>
@@ -454,7 +536,27 @@
             </div>
           </div>
           <div class="rock-card">
-            <div class="rock-title">Account for New Costs</div>
+            <div class="rock-header">
+              <div class="rock-title">Issuing Dispute Costs</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge top">TOP</span>
+              </div>
+            </div>
+            <div class="rock-description">Proper allocation of dispute costs across credit and balance cards</div>
+            <div class="contributors">
+              <span class="contributor">David</span>
+              <span class="contributor">Michael</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Account for New Costs</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge top">TOP</span>
+              </div>
+            </div>
             <div class="rock-description">Same Day ACH, Intl Payments, Issuing Dispute Fees, Domestic Outbound Wire Costs, Cash & Check Accept Fees</div>
             <div class="contributors">
               <span class="contributor">David</span>
@@ -469,7 +571,13 @@
         <h2 class="category-title">Fraud/Risk Priorities</h2>
         <div class="rocks-grid">
           <div class="rock-card">
-            <div class="rock-title">Fraud Vectors Overview</div>
+            <div class="rock-header">
+              <div class="rock-title">Fraud Vectors Overview</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q2+</span>
+                <span class="priority-badge medium">MEDIUM</span>
+              </div>
+            </div>
             <div class="rock-description">Comprehensive view of fraud vectors across products</div>
             <div class="contributors">
               <span class="contributor">David</span>
@@ -477,8 +585,13 @@
             </div>
           </div>
           <div class="rock-card">
-            <div class="rock-title">Fraud Documentation</div>
-            <div class="rock-description">Link to document explaining various types of fraud encountered across products</div>
+            <div class="rock-header">
+              <div class="rock-title">Fraud Documentation</div>
+            </div>
+            <div class="rock-description">Document explaining various types of fraud encountered across products</div>
+            <a href="https://docs.google.com/document/d/1ARY0P7gGp4l62ctRDwnGkdsYBTZquy4JHkItiJCXRaU/edit?tab=t.0" target="_blank" class="rock-link">
+              📄 View Fraud Documentation →
+            </a>
             <div class="contributors">
               <span class="contributor">David</span>
               <span class="contributor">Michael</span>
@@ -492,7 +605,13 @@
         <h2 class="category-title">Billing</h2>
         <div class="rocks-grid">
           <div class="rock-card">
-            <div class="rock-title">Shop Ads Billing Integration</div>
+            <div class="rock-header">
+              <div class="rock-title">Shop Ads Billing Integration</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q2+</span>
+                <span class="priority-badge medium">MEDIUM</span>
+              </div>
+            </div>
             <div class="rock-description">Incorporate Shop Ads into billing systems</div>
             <div class="contributors">
               <span class="contributor">David</span>
@@ -500,7 +619,13 @@
             </div>
           </div>
           <div class="rock-card">
-            <div class="rock-title">Billing COGS Forecast</div>
+            <div class="rock-header">
+              <div class="rock-title">Billing COGS Forecast</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q2+</span>
+                <span class="priority-badge medium">MEDIUM</span>
+              </div>
+            </div>
             <div class="rock-description">Forecast billing COGS including Shop Ads</div>
             <div class="contributors">
               <span class="contributor">David</span>
@@ -508,8 +633,14 @@
             </div>
           </div>
           <div class="rock-card">
-            <div class="rock-title">Chargeback Monitoring</div>
-            <div class="rock-description">Regular monitoring and remediation of billing chargebacks</div>
+            <div class="rock-header">
+              <div class="rock-title">Chargeback Monitoring</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q2+</span>
+                <span class="priority-badge low">MED-LOW</span>
+              </div>
+            </div>
+            <div class="rock-description">Regular monitoring and remediation of billing chargebacks (outside urgent incidents)</div>
             <div class="contributors">
               <span class="contributor">David</span>
               <span class="contributor">Michael</span>
