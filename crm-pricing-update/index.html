@@ -78,9 +78,9 @@
         
         .summary-points {
             list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
         
         .summary-points li {
@@ -319,6 +319,44 @@
             grid-column: 1 / -1;
         }
         
+        .collapsible {
+            cursor: pointer;
+        }
+        
+        .collapsible-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 4px 0;
+        }
+        
+        .collapsible-header h3 {
+            margin: 0;
+        }
+        
+        .toggle-icon {
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: transform 0.2s ease;
+        }
+        
+        details[open] .toggle-icon {
+            transform: rotate(90deg);
+        }
+        
+        details summary {
+            list-style: none;
+        }
+        
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        details .comparison-table {
+            margin-top: 16px;
+        }
+        
         .footer {
             margin-top: 24px;
             padding-top: 16px;
@@ -427,8 +465,11 @@
         </div>
     </div>
 
-    <div class="card full-width">
-        <h3>January 2026 Price Changes vs. Current</h3>
+    <details class="card full-width collapsible">
+        <summary class="collapsible-header">
+            <h3>January 2026 Price Changes vs. Current</h3>
+            <span class="toggle-icon">▶</span>
+        </summary>
         <table class="comparison-table">
             <thead>
                 <tr>
@@ -523,7 +564,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </details>
 
     <div class="footer">
         Merchant Services Finance | Capital Risk Model Pricing Update | January 2026
