@@ -21,11 +21,10 @@
       --accent-balance: #00d4aa;
       --accent-lending: #4dabf7;
       --accent-portfolio: #ffd93d;
-      --accent-team: #4dabf7;
-      --accent-lucas: #ff6b35;
-      --accent-milan: #00d4aa;
-      --accent-seb: #7c5cff;
-      --accent-shared: #ffd93d;
+      --accent-goals: #ff6b35;
+      --accent-experiments: #00d4aa;
+      --accent-products: #7c5cff;
+      --accent-metrics: #4dabf7;
       --border: #2a2a3a;
       --sidebar-width: 220px;
     }
@@ -190,40 +189,35 @@
     }
 
     .team-badge-label { color: var(--text-muted); }
-    .team-badge-name { color: var(--accent-team); font-weight: 500; }
+    .team-badge-name { color: var(--accent-lending); font-weight: 500; }
 
-    .person-section {
+    /* Category Sections */
+    .category-section {
       margin-bottom: 48px;
     }
 
-    .person-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .person-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--bg-primary);
-    }
-
-    .person-section.lucas .person-avatar { background: var(--accent-lucas); }
-    .person-section.milan .person-avatar { background: var(--accent-milan); }
-    .person-section.seb .person-avatar { background: var(--accent-seb); }
-    .person-section.shared .person-avatar { background: var(--accent-shared); }
-
-    .person-name {
-      font-size: 1.4rem;
+    .category-title {
+      font-size: 1.3rem;
       font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--category-accent);
     }
+
+    .category-title::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: var(--category-accent);
+      border-radius: 2px;
+    }
+
+    .category-section.goals { --category-accent: var(--accent-goals); }
+    .category-section.experiments { --category-accent: var(--accent-experiments); }
+    .category-section.products { --category-accent: var(--accent-products); }
+    .category-section.metrics { --category-accent: var(--accent-metrics); }
 
     .rocks-grid {
       display: grid;
@@ -237,34 +231,25 @@
       border-radius: 12px;
       padding: 24px;
       transition: all 0.2s;
-      position: relative;
-      overflow: hidden;
+      border-left: 3px solid var(--category-accent);
     }
-
-    .rock-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--person-accent);
-    }
-
-    .person-section.lucas .rock-card { --person-accent: var(--accent-lucas); }
-    .person-section.milan .rock-card { --person-accent: var(--accent-milan); }
-    .person-section.seb .rock-card { --person-accent: var(--accent-seb); }
-    .person-section.shared .rock-card { --person-accent: var(--accent-shared); }
 
     .rock-card:hover {
       background: var(--bg-card-hover);
       transform: translateY(-2px);
     }
 
+    .rock-card.featured {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255, 107, 53, 0.05) 100%);
+      border-left-width: 4px;
+    }
+
     .rock-header {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+      gap: 12px;
       margin-bottom: 10px;
     }
 
@@ -274,28 +259,64 @@
       color: var(--text-primary);
     }
 
-    .timeline-badge {
+    .rock-badges {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .priority-badge {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      padding: 4px 10px;
-      background: var(--person-accent);
-      color: var(--bg-primary);
+      font-size: 0.65rem;
+      padding: 3px 8px;
       border-radius: 4px;
       font-weight: 500;
-      flex-shrink: 0;
+    }
+
+    .priority-badge.p0 {
+      background: rgba(255, 107, 53, 0.2);
+      color: #ff8c5a;
+    }
+
+    .priority-badge.p1 {
+      background: rgba(255, 217, 61, 0.2);
+      color: #ffd93d;
+    }
+
+    .priority-badge.p2 {
+      background: rgba(138, 138, 154, 0.2);
+      color: #8a8a9a;
+    }
+
+    .timeline-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      background: var(--category-accent);
+      color: #0a0a0f;
+      border-radius: 4px;
+      font-weight: 500;
     }
 
     .rock-description {
       font-size: 0.9rem;
       color: var(--text-secondary);
       line-height: 1.6;
+      margin-bottom: 14px;
     }
 
-    .shared-badge {
-      margin-top: 12px;
+    .contributors {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .contributor {
       font-size: 0.75rem;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
       color: var(--text-muted);
-      font-style: italic;
     }
 
     footer {
@@ -362,6 +383,7 @@
       .hamburger { display: block; }
       h1 { font-size: 2.2rem; }
       .rocks-grid { grid-template-columns: 1fr; }
+      .rock-card.featured { grid-column: 1; }
       .container { padding: 40px 20px; }
     }
   </style>
@@ -423,134 +445,201 @@
         </div>
       </header>
 
-      <!-- Shared Project -->
-      <section class="person-section shared">
-        <div class="person-header">
-          <div class="person-avatar">★</div>
-          <div class="person-name">Team Collaboration</div>
-        </div>
+      <!-- 1. Lending Goals & Target Setting -->
+      <section class="category-section goals">
+        <h2 class="category-title">Lending Goals & Target Setting</h2>
         <div class="rocks-grid">
-          <div class="rock-card">
+          <div class="rock-card featured">
             <div class="rock-header">
-              <div class="rock-title">Lending Goals & Target Setting</div>
-              <span class="timeline-badge">Jan</span>
+              <div class="rock-title">2026 Lending Goals & Target Setting</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan</span>
+                <span class="priority-badge p0">P0</span>
+              </div>
             </div>
-            <div class="rock-description">Setting 2026 goals across Lending R&D, Marketing and Sales. Building dashboard to monitor progress.</div>
-            <div class="shared-badge">Lucas · Milan · Seb</div>
+            <div class="rock-description">Setting 2026 goals across Lending R&D, Marketing, and Sales. Building dashboard to monitor progress and align cross-functional teams on unified targets.</div>
+            <div class="contributors">
+              <span class="contributor">Lucas</span>
+              <span class="contributor">Milan</span>
+              <span class="contributor">Seb</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Lucas Section -->
-      <section class="person-section lucas">
-        <div class="person-header">
-          <div class="person-avatar">L</div>
-          <div class="person-name">Lucas</div>
-        </div>
+      <!-- 2. Experiments & Growth Initiatives -->
+      <section class="category-section experiments">
+        <h2 class="category-title">Experiments & Growth Initiatives</h2>
         <div class="rocks-grid">
-          <div class="rock-card">
-            <div class="rock-header">
-              <div class="rock-title">Small Merchant Pricing</div>
-              <span class="timeline-badge">Jan</span>
-            </div>
-            <div class="rock-description">Results read out & LTV impact analysis</div>
-          </div>
           <div class="rock-card">
             <div class="rock-header">
               <div class="rock-title">0% APR Small Merchant Promo</div>
-              <span class="timeline-badge">Mar</span>
+              <div class="rock-badges">
+                <span class="timeline-badge">Mar</span>
+                <span class="priority-badge p0">P0</span>
+              </div>
             </div>
-            <div class="rock-description">Business case & LTV impact assessment</div>
+            <div class="rock-description">Business case development and LTV impact assessment for promotional 0% APR offering to small merchants. Supports Lending Transformation goal of maximizing conversion with greatest LTV impact.</div>
+            <div class="contributors">
+              <span class="contributor">Lucas</span>
+            </div>
           </div>
           <div class="rock-card">
             <div class="rock-header">
-              <div class="rock-title">Growth Accounting Methodology</div>
-              <span class="timeline-badge">Jan</span>
+              <div class="rock-title">Small Merchant Pricing</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
             </div>
-            <div class="rock-description">Align on new methodology to measure performance + dashboards</div>
+            <div class="rock-description">Results read-out and LTV impact analysis from pricing experiments. Feeds into broader RBP + LTV pricing strategy across all merchant segments.</div>
+            <div class="contributors">
+              <span class="contributor">Lucas</span>
+            </div>
           </div>
           <div class="rock-card">
             <div class="rock-header">
-              <div class="rock-title">Lending LTV Model MVP</div>
-              <span class="timeline-badge">Jan</span>
+              <div class="rock-title">Upmarket Growth Initiatives</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p2">P2</span>
+              </div>
             </div>
-            <div class="rock-description">Working with Data Science to build Lending LTV model</div>
+            <div class="rock-description">Expand 25% remittance rate to upmarket merchants, increase max deal size beyond $2M, and optimize manual underwriting criteria based on risk assessment.</div>
+            <div class="contributors">
+              <span class="contributor">Milan</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Milan Section -->
-      <section class="person-section milan">
-        <div class="person-header">
-          <div class="person-avatar">M</div>
-          <div class="person-name">Milan</div>
-        </div>
+      <!-- 3. Product Initiatives -->
+      <section class="category-section products">
+        <h2 class="category-title">Product Initiatives</h2>
         <div class="rocks-grid">
           <div class="rock-card">
             <div class="rock-header">
-              <div class="rock-title">Upmarket Growth Initiatives</div>
-              <span class="timeline-badge">Q1</span>
+              <div class="rock-title">EU Expansion - France</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p0">P0</span>
+              </div>
             </div>
-            <div class="rock-description">Expand 25% remittance rate upmarket, increase max deal size >$2M, optimize manual underwriting criteria based on risk</div>
+            <div class="rock-description">Completing EU expansion with France launch. Financial modeling, regulatory requirements, and go-to-market support for new geography.</div>
+            <div class="contributors">
+              <span class="contributor">Milan</span>
+            </div>
           </div>
           <div class="rock-card">
             <div class="rock-header">
               <div class="rock-title">Unified Lending</div>
-              <span class="timeline-badge">H1</span>
+              <div class="rock-badges">
+                <span class="timeline-badge">H1</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
             </div>
-            <div class="rock-description">Shipping new lending product – business case, experiment, financials</div>
-          </div>
-          <div class="rock-card">
-            <div class="rock-header">
-              <div class="rock-title">EU Expansion - France</div>
-              <span class="timeline-badge">Q1</span>
+            <div class="rock-description">Shipping new unified lending product that powers credit card and cash withdrawals. Business case development, experiment design, and financial modeling for the Unified Borrowing Line initiative.</div>
+            <div class="contributors">
+              <span class="contributor">Milan</span>
             </div>
-            <div class="rock-description">Finishing EU expansion with France launch</div>
-          </div>
-          <div class="rock-card">
-            <div class="rock-header">
-              <div class="rock-title">Gsheets Finance Model Rebuild</div>
-              <span class="timeline-badge">Q1</span>
-            </div>
-            <div class="rock-description">Rebuilding Gsheets Finance Model for new product structures</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Seb Section -->
-      <section class="person-section seb">
-        <div class="person-header">
-          <div class="person-avatar">S</div>
-          <div class="person-name">Seb</div>
-        </div>
-        <div class="rocks-grid">
-          <div class="rock-card">
-            <div class="rock-header">
-              <div class="rock-title">ALM 2.0 Model</div>
-              <span class="timeline-badge">Jan</span>
-            </div>
-            <div class="rock-description">SQL model to track Lending Annualized Loan Margin</div>
-          </div>
-          <div class="rock-card">
-            <div class="rock-header">
-              <div class="rock-title">Capital Financial Model "Cappy"</div>
-              <span class="timeline-badge">H1</span>
-            </div>
-            <div class="rock-description">Converting spreadsheet financial model into Python</div>
           </div>
           <div class="rock-card">
             <div class="rock-header">
               <div class="rock-title">Complete Flex</div>
-              <span class="timeline-badge">Q1</span>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
             </div>
-            <div class="rock-description">Performance read out on November Launch; Rolling out to more merchants (geos and upmarket)</div>
+            <div class="rock-description">Performance read-out on November launch. Rolling out Flex to more merchants across additional geos and upmarket segments based on initial results.</div>
+            <div class="contributors">
+              <span class="contributor">Seb</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Metric Design, Dashboards & FP&A Efficiency -->
+      <section class="category-section metrics">
+        <h2 class="category-title">Metric Design, Dashboards & FP&A Efficiency</h2>
+        <div class="rocks-grid">
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Growth Accounting Methodology</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan</span>
+                <span class="priority-badge p0">P0</span>
+              </div>
+            </div>
+            <div class="rock-description">New methodology to measure Lending performance for renewals. Part of the broader Growth driver accounting framework initiative to shift focus from loan economics to overall LTV impact.</div>
+            <div class="contributors">
+              <span class="contributor">Lucas</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">ALM 2.0 Model</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan</span>
+                <span class="priority-badge p0">P0</span>
+              </div>
+            </div>
+            <div class="rock-description">SQL model to track Lending Annualized Loan Margin. Critical infrastructure for measuring lending profitability and informing pricing decisions.</div>
+            <div class="contributors">
+              <span class="contributor">Seb</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Lending LTV Model MVP</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
+            </div>
+            <div class="rock-description">Working with Data Science to build Lending LTV model. Connects to RBP + LTV pricing initiative and enables LTV-informed decision making across products.</div>
+            <div class="contributors">
+              <span class="contributor">Lucas</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Gsheets Finance Model Rebuild</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
+            </div>
+            <div class="rock-description">Rebuilding Gsheets Finance Model to accommodate new product structures including Unified Lending and Flex. Foundation for accurate forecasting.</div>
+            <div class="contributors">
+              <span class="contributor">Milan</span>
+            </div>
           </div>
           <div class="rock-card">
             <div class="rock-header">
               <div class="rock-title">FS Performance Dashboards</div>
-              <span class="timeline-badge">Q1</span>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
             </div>
-            <div class="rock-description">Refactoring Financial Services Performance Dashboards – consolidating dashboards and KPIs to better measure Lending performance</div>
+            <div class="rock-description">Refactoring Financial Services Performance Dashboards. Consolidating dashboards and KPIs to better measure Lending performance and reduce reporting overhead.</div>
+            <div class="contributors">
+              <span class="contributor">Seb</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Capital Financial Model "Cappy"</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">H1</span>
+                <span class="priority-badge p2">P2</span>
+              </div>
+            </div>
+            <div class="rock-description">Converting spreadsheet financial model into Python for improved reliability, version control, and automation. Part of broader Python-based automation initiative across FP&A.</div>
+            <div class="contributors">
+              <span class="contributor">Seb</span>
+            </div>
           </div>
         </div>
       </section>
