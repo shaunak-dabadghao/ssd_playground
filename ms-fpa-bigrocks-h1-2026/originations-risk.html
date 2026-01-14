@@ -22,15 +22,9 @@
       --accent-lending: #4dabf7;
       --accent-portfolio: #ffd93d;
       --accent-pricing: #ff6b35;
-      --accent-offer: #00d4aa;
-      --accent-credit: #7c5cff;
-      --accent-urgent: #ff4757;
-      --accent-experiments: #ffd93d;
-      --accent-underwriting: #4dabf7;
-      --accent-webbank: #69db7c;
-      --accent-cdr: #e599f7;
-      --accent-automation: #20c997;
-      --accent-ai: #f783ac;
+      --accent-risk: #7c5cff;
+      --accent-contracting: #00d4aa;
+      --accent-automation: #4dabf7;
       --border: #2a2a3a;
       --sidebar-width: 220px;
     }
@@ -195,167 +189,187 @@
     }
 
     .team-badge-label { color: var(--text-muted); }
-    .team-badge-name { color: var(--accent-pricing); font-weight: 500; }
+    .team-badge-name { color: var(--accent-originations); font-weight: 500; }
+
+    /* Category Sections */
+    .category-section {
+      margin-bottom: 48px;
+    }
+
+    .category-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--category-accent);
+    }
+
+    .category-title::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: var(--category-accent);
+      border-radius: 2px;
+    }
+
+    .category-section.pricing { --category-accent: var(--accent-pricing); }
+    .category-section.risk { --category-accent: var(--accent-risk); }
+    .category-section.contracting { --category-accent: var(--accent-contracting); }
+    .category-section.automation { --category-accent: var(--accent-automation); }
 
     .rocks-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
     }
 
     .rock-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .rock-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--card-accent);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s;
+      border-left: 3px solid var(--category-accent);
     }
 
     .rock-card:hover {
       background: var(--bg-card-hover);
       transform: translateY(-2px);
-      box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+    }
+
+    .rock-card.featured {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255, 107, 53, 0.05) 100%);
+      border-left-width: 4px;
     }
 
     .rock-header {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 10px;
     }
 
     .rock-title {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
-    .rock-title .arrow { color: var(--card-accent); font-size: 1.1rem; }
+    .rock-badges {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
 
     .priority-badge {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .priority-badge.p0 {
+      background: rgba(255, 107, 53, 0.2);
+      color: #ff8c5a;
     }
 
     .priority-badge.p1 {
-      background: rgba(255, 107, 53, 0.15);
-      color: #ff8c5a;
-      border-color: rgba(255, 107, 53, 0.3);
+      background: rgba(255, 217, 61, 0.2);
+      color: #ffd93d;
     }
 
     .priority-badge.p2 {
-      background: rgba(77, 171, 247, 0.15);
-      color: #7cc4fa;
-      border-color: rgba(77, 171, 247, 0.3);
+      background: rgba(138, 138, 154, 0.2);
+      color: #8a8a9a;
+    }
+
+    .timeline-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      background: var(--category-accent);
+      color: #0a0a0f;
+      border-radius: 4px;
+      font-weight: 500;
     }
 
     .rock-description {
+      font-size: 0.9rem;
       color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-      line-height: 1.7;
+      line-height: 1.6;
+      margin-bottom: 14px;
     }
 
     .contributors {
       display: flex;
-      align-items: center;
       gap: 8px;
-      margin-bottom: 20px;
       flex-wrap: wrap;
     }
 
-    .contributors-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
     .contributor {
-      font-size: 0.8rem;
-      padding: 4px 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      color: var(--text-primary);
-    }
-
-    .timeline { display: flex; flex-direction: column; gap: 10px; }
-
-    .timeline-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.9rem;
-    }
-
-    .timeline-month {
-      font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
-      padding: 3px 8px;
-      background: var(--card-accent);
-      color: var(--bg-primary);
-      border-radius: 4px;
-      font-weight: 500;
-      min-width: 50px;
-      text-align: center;
-      flex-shrink: 0;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      color: var(--text-muted);
     }
 
-    .timeline-text { color: var(--text-secondary); flex: 1; }
-
-    .rock-card.pricing { --card-accent: var(--accent-pricing); }
-    .rock-card.offer { --card-accent: var(--accent-offer); }
-    .rock-card.credit { --card-accent: var(--accent-credit); }
-    .rock-card.urgent { --card-accent: var(--accent-urgent); }
-    .rock-card.experiments { --card-accent: var(--accent-experiments); }
-    .rock-card.underwriting { --card-accent: var(--accent-underwriting); }
-    .rock-card.webbank { --card-accent: var(--accent-webbank); }
-    .rock-card.cdr { --card-accent: var(--accent-cdr); }
-    .rock-card.automation { --card-accent: var(--accent-automation); }
-    .rock-card.ai { --card-accent: var(--accent-ai); }
-
-    .rock-card.featured {
-      grid-column: 1 / -1;
-      background: linear-gradient(135deg, var(--bg-card) 0%, #1a1520 100%);
-    }
-
+    /* Featured card timeline */
     .featured-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
     }
 
     .featured-section {
       background: rgba(255, 255, 255, 0.02);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 10px;
+      padding: 16px;
     }
 
     .featured-section h4 {
-      font-size: 0.85rem;
-      color: var(--card-accent);
-      margin-bottom: 12px;
+      font-size: 0.8rem;
+      color: var(--category-accent);
+      margin-bottom: 10px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+
+    .timeline-month {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      background: var(--category-accent);
+      color: var(--bg-primary);
+      border-radius: 3px;
+      font-weight: 500;
+      min-width: 45px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .timeline-text {
+      color: var(--text-secondary);
+      flex: 1;
     }
 
     footer {
@@ -368,125 +382,21 @@
     }
 
     /* Feedback Section */
-    .feedback-section {
-      margin-top: 64px;
-      padding-top: 48px;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-title::before {
-      content: '';
-      width: 4px;
-      height: 28px;
-      background: var(--accent-originations);
-      border-radius: 2px;
-    }
-
-    .section-intro {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      max-width: 800px;
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .feedback-form {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-
-    .feedback-form textarea {
-      width: 100%;
-      min-height: 100px;
-      padding: 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: inherit;
-      font-size: 0.95rem;
-      resize: vertical;
-      margin-bottom: 12px;
-    }
-
-    .feedback-form textarea:focus {
-      outline: none;
-      border-color: var(--accent-originations);
-    }
-
-    .feedback-form textarea::placeholder {
-      color: var(--text-muted);
-    }
-
-    .feedback-form button {
-      padding: 10px 24px;
-      background: var(--accent-originations);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .feedback-form button:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
-
-    .feedback-form button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .feedback-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .feedback-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-    }
-
-    .feedback-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .feedback-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--accent-originations);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: white;
-    }
-
+    .feedback-section { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border); }
+    .section-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary); display: flex; align-items: center; gap: 12px; }
+    .section-title::before { content: ''; width: 4px; height: 28px; background: var(--accent-originations); border-radius: 2px; }
+    .section-intro { font-size: 0.95rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; margin-bottom: 24px; }
+    .feedback-form { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+    .feedback-form textarea { width: 100%; min-height: 100px; padding: 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-primary); color: var(--text-primary); font-family: inherit; font-size: 0.95rem; resize: vertical; margin-bottom: 12px; }
+    .feedback-form textarea:focus { outline: none; border-color: var(--accent-originations); }
+    .feedback-form textarea::placeholder { color: var(--text-muted); }
+    .feedback-form button { padding: 10px 24px; background: var(--accent-originations); color: white; border: none; border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+    .feedback-form button:hover { opacity: 0.9; transform: translateY(-1px); }
+    .feedback-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .feedback-list { display: flex; flex-direction: column; gap: 16px; }
+    .feedback-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .feedback-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .feedback-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-originations); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; color: white; }
     .feedback-meta { flex: 1; }
     .feedback-author { font-weight: 500; color: var(--text-primary); font-size: 0.9rem; }
     .feedback-time { font-size: 0.75rem; color: var(--text-muted); }
@@ -589,341 +499,222 @@
         </div>
       </header>
 
-      <div class="rocks-grid">
-        <!-- Pricing - Featured Card -->
-        <div class="rock-card pricing featured">
-          <div class="rock-header">
-            <h2 class="rock-title">Pricing <span class="arrow">→</span></h2>
-            <span class="priority-badge">🔥 HIGHEST PRIORITY</span>
-          </div>
-          <p class="rock-description">
-            The biggest rock – requires significant time for analysis and cross-functional approvals. 
-            Covers GRM pricing rollout, CDR refresh, and all associated credit policy changes.
-          </p>
-          <div class="contributors">
-            <span class="contributors-label">Lead:</span>
-            <span class="contributor">Shaunak</span>
-          </div>
-          <div class="featured-grid">
-            <div class="featured-section">
-              <h4>GRM Pricing Rollout</h4>
-              <div class="timeline">
-                <div class="timeline-item">
-                  <span class="timeline-month">Jan</span>
-                  <span class="timeline-text">US + CA, AU</span>
+      <!-- 1. Pricing -->
+      <section class="category-section pricing">
+        <h2 class="category-title">Pricing</h2>
+        <div class="rocks-grid">
+          <div class="rock-card featured">
+            <div class="rock-header">
+              <div class="rock-title">Pricing Refresh with New Risk Model (GRM)</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">H1</span>
+                <span class="priority-badge p0">P0</span>
+              </div>
+            </div>
+            <div class="rock-description">The biggest rock – GRM-based risk pricing rollout across all geos. Part of the broader "RBP for all merchants + LTV in pricing" initiative. Includes CDR refresh, LTV integration assessment, and all associated credit policy changes.</div>
+            <div class="contributors">
+              <span class="contributor">Shaunak</span>
+            </div>
+            <div class="featured-grid">
+              <div class="featured-section">
+                <h4>GRM Rollout</h4>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <span class="timeline-month">Jan</span>
+                    <span class="timeline-text">US + CA, AU</span>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-month">Feb</span>
+                    <span class="timeline-text">UK</span>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-month">Mar</span>
+                    <span class="timeline-text">EU</span>
+                  </div>
                 </div>
-                <div class="timeline-item">
-                  <span class="timeline-month">Feb</span>
-                  <span class="timeline-text">UK</span>
+              </div>
+              <div class="featured-section">
+                <h4>CDR Refresh</h4>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <span class="timeline-month">Q2</span>
+                    <span class="timeline-text">Pricing & CDR refresh for all geos</span>
+                  </div>
                 </div>
-                <div class="timeline-item">
-                  <span class="timeline-month">Mar</span>
-                  <span class="timeline-text">EU</span>
+              </div>
+              <div class="featured-section">
+                <h4>LTV Integration</h4>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <span class="timeline-month">Feb-Mar</span>
+                    <span class="timeline-text">Assess LTV incorporation into pricing</span>
+                  </div>
+                </div>
+              </div>
+              <div class="featured-section">
+                <h4>Policy Updates</h4>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <span class="timeline-month">H1</span>
+                    <span class="timeline-text">Credit policy changes for pricing</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="featured-section">
-              <h4>CDR Refresh</h4>
-              <div class="timeline">
-                <div class="timeline-item">
-                  <span class="timeline-month">Q2</span>
-                  <span class="timeline-text">Pricing & CDR refresh for all geos</span>
-                </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Experiments</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan</span>
+                <span class="priority-badge p1">P1</span>
               </div>
             </div>
-            <div class="featured-section">
-              <h4>LTV Integration</h4>
-              <div class="timeline">
-                <div class="timeline-item">
-                  <span class="timeline-month">Feb-Mar</span>
-                  <span class="timeline-text">Assess how to incorporate LTV into pricing strategy</span>
-                </div>
+            <div class="rock-description">Pricing experiments and multi-duration loan analysis. Collaborating with Lucas (Lending) on small merchant pricing LTV impact. CDR & WAL simulation on synthetic cohorts for multi-duration offerings.</div>
+            <div class="contributors">
+              <span class="contributor">Khasim</span>
+              <span class="contributor">Shaunak</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Originations and Risk -->
+      <section class="category-section risk">
+        <h2 class="category-title">Originations and Risk</h2>
+        <div class="rocks-grid">
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Credit Card Model</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1-Q2</span>
+                <span class="priority-badge p0">P0</span>
               </div>
             </div>
-            <div class="featured-section">
-              <h4>Policy Updates</h4>
-              <div class="timeline">
-                <div class="timeline-item">
-                  <span class="timeline-month">H1</span>
-                  <span class="timeline-text">Credit policy changes to support pricing updates</span>
-                </div>
+            <div class="rock-description">Taking over model ownership from Balance team (David & Michael). Critical for Unified Lending architecture – the new product that powers credit card and cash withdrawals. Focus on understanding, improvements, and adaptation for unified borrowing line.</div>
+            <div class="contributors">
+              <span class="contributor">Khasim</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Urgent Circumstances</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan</span>
+                <span class="priority-badge p0">P0</span>
               </div>
             </div>
+            <div class="rock-description">Implement new UC logic for Capital (1.5 & 2.0) and Credit. Consolidate health statuses, deprecate Reach Out & Slow Down in favor of new UC status, and build quarterly monitoring.</div>
+            <div class="contributors">
+              <span class="contributor">Negin</span>
+              <span class="contributor">Khasim</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Offer Waterfall</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan-Feb</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
+            </div>
+            <div class="rock-description">Build comprehensive visibility into offer generation: what's published, declined, and why. Existing tracking deprecated with workflow migration – need new logging events, data pipelines, and eligibility criteria dashboard.</div>
+            <div class="contributors">
+              <span class="contributor">Khasim</span>
+              <span class="contributor">Negin</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">CDR Curve Model</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan ✓</span>
+                <span class="priority-badge p2">P2</span>
+              </div>
+            </div>
+            <div class="rock-description">Dynamic CDR curve model with terminal CDR estimation. Quarterly auto-refresh using rolling 24-month vintage window with averaged conversion factors. Model shipped.</div>
+            <div class="contributors">
+              <span class="contributor">Negin</span>
+            </div>
           </div>
         </div>
+      </section>
 
-        <!-- Offer Generation Waterfall -->
-        <div class="rock-card offer">
-          <div class="rock-header">
-            <h2 class="rock-title">Offer Waterfall <span class="arrow">→</span></h2>
-            <span class="priority-badge p1">P1</span>
+      <!-- 3. Contracting and Support -->
+      <section class="category-section contracting">
+        <h2 class="category-title">Contracting and Support</h2>
+        <div class="rocks-grid">
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">WebBank Contract</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan-May</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
+            </div>
+            <div class="rock-description">3-year contract renewal: current state analysis of financials and partnerships, goal setting, financial modeling, opportunity sizing, and renegotiation through signing.</div>
+            <div class="contributors">
+              <span class="contributor">Negin</span>
+            </div>
           </div>
-          <p class="rock-description">
-            Build comprehensive visibility into offer generation: what's published, declined, and why. 
-            Major blocker: existing tracking deprecated with workflow migration – need new logging & pipelines.
-          </p>
-          <div class="contributors">
-            <span class="contributors-label">Team:</span>
-            <span class="contributor">Khasim</span>
-            <span class="contributor">Negin</span>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Define logging events with engineering</span>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Underwriting Support</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan-Mar</span>
+                <span class="priority-badge p2">P2</span>
+              </div>
             </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Build data pipelines for analytics extraction</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Ship eligibility criteria dashboard</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Feb</span>
-              <span class="timeline-text">Build analysis queries & visualizations</span>
+            <div class="rock-description">Analytics support for the Underwriting team through March handoff. Includes denylist monitoring site and ongoing support until end of analytical support period.</div>
+            <div class="contributors">
+              <span class="contributor">Negin</span>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Credit Card Model -->
-        <div class="rock-card credit">
-          <div class="rock-header">
-            <h2 class="rock-title">Credit Card Model <span class="arrow">→</span></h2>
-            <span class="priority-badge p1">P1</span>
-          </div>
-          <p class="rock-description">
-            Taking over model ownership from David & Michael. Focus on understanding, improvements, 
-            and adapting for Unified Lending.
-          </p>
-          <div class="contributors">
-            <span class="contributors-label">Lead:</span>
-            <span class="contributor">Khasim</span>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Model understanding & ownership transfer</span>
+      <!-- 4. Automation and Efficiency -->
+      <section class="category-section automation">
+        <h2 class="category-title">Automation and Efficiency</h2>
+        <div class="rocks-grid">
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Python Automation</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Apr-May</span>
+                <span class="priority-badge p2">P2</span>
+              </div>
             </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Jan-Feb</span>
-              <span class="timeline-text">Explore model improvements</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Mar-Jun</span>
-              <span class="timeline-text">Adapt for Unified Lending architecture</span>
+            <div class="rock-description">Automate recurring operational tasks (more frequent than quarterly) using Python & AI. Streamline reporting and "keep-the-lights-on" work to reclaim team hours for high-impact projects. Part of broader FP&A efficiency initiative.</div>
+            <div class="contributors">
+              <span class="contributor">Khasim</span>
             </div>
           </div>
-        </div>
-
-        <!-- Urgent Circumstances -->
-        <div class="rock-card urgent">
-          <div class="rock-header">
-            <h2 class="rock-title">Urgent Circumstances <span class="arrow">→</span></h2>
-            <span class="priority-badge p1">P1</span>
-          </div>
-          <p class="rock-description">
-            Implement new UC logic for Capital (1.5 & 2.0) and Credit. 
-            Consolidate health statuses and build impact monitoring.
-          </p>
-          <div class="contributors">
-            <span class="contributors-label">Team:</span>
-            <span class="contributor">Negin</span>
-            <span class="contributor">Khasim</span>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Request eng resources & prioritization</span>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">AI Workflows</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan-Feb</span>
+                <span class="priority-badge p2">P2</span>
+              </div>
             </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Roll out updated Credit health statuses</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Deprecate Reach Out & Slow Down → new UC status</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Build monitoring report, quarterly re-assessment</span>
+            <div class="rock-description">Adapt Ads team's collaborative framework (shopify/ads-ds) for FP&A and FS. Enable seamless context sharing between teammates and LLMs to accelerate onboarding and execution speed.</div>
+            <div class="contributors">
+              <span class="contributor">Khasim</span>
             </div>
           </div>
         </div>
-
-        <!-- Experiments -->
-        <div class="rock-card experiments">
-          <div class="rock-header">
-            <h2 class="rock-title">Experiments <span class="arrow">→</span></h2>
-            <span class="priority-badge p1">P1</span>
-          </div>
-          <p class="rock-description">
-            Design and follow-up work on pricing experiments and multi-duration loan analysis.
-          </p>
-          <div class="contributors">
-            <span class="contributors-label">Team:</span>
-            <span class="contributor">Khasim</span>
-            <span class="contributor">Shaunak</span>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Small merchant pricing: assess LTV impact with Lucas</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Multi-duration: simulate CDR & WAL on synthetic cohorts</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Underwriting -->
-        <div class="rock-card underwriting">
-          <div class="rock-header">
-            <h2 class="rock-title">Underwriting Support <span class="arrow">→</span></h2>
-            <span class="priority-badge p2">P2</span>
-          </div>
-          <p class="rock-description">
-            Analytics support for the Underwriting team through March handoff.
-          </p>
-          <div class="contributors">
-            <span class="contributors-label">Lead:</span>
-            <span class="contributor">Negin</span>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Denylist monitoring site + ongoing support</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Mar</span>
-              <span class="timeline-text">End of analytical support</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- WebBank Contract -->
-        <div class="rock-card webbank">
-          <div class="rock-header">
-            <h2 class="rock-title">WebBank Contract <span class="arrow">→</span></h2>
-            <span class="priority-badge p2">P2</span>
-          </div>
-          <p class="rock-description">
-            3-year contract renewal: current state analysis, financial modeling, and renegotiation.
-          </p>
-          <div class="contributors">
-            <span class="contributors-label">Lead:</span>
-            <span class="contributor">Negin</span>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Understand current state (financials & partnerships)</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Jan-Feb</span>
-              <span class="timeline-text">Goal setting, financial model, opportunity sizing</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Feb-Apr</span>
-              <span class="timeline-text">Iterate with WebBank</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Apr-May</span>
-              <span class="timeline-text">Sign contract</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CDR Curve Model -->
-        <div class="rock-card cdr">
-          <div class="rock-header">
-            <h2 class="rock-title">CDR Curve Model <span class="arrow">→</span></h2>
-            <span class="priority-badge p2">P2</span>
-          </div>
-          <p class="rock-description">
-            Dynamic CDR curve model with terminal CDR estimation. Quarterly auto-refresh using 
-            rolling 24-month vintage window with averaged conversion factors.
-          </p>
-          <div class="contributors">
-            <span class="contributors-label">Lead:</span>
-            <span class="contributor">Negin</span>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Ship the model ✓</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Python Automation -->
-        <div class="rock-card automation">
-          <div class="rock-header">
-            <h2 class="rock-title">Python Automation <span class="arrow">→</span></h2>
-            <span class="priority-badge p2">P2</span>
-          </div>
-          <p class="rock-description">
-            Automate recurring operational tasks (more frequent than quarterly) using Python & AI. 
-            Streamline reporting and "keep-the-lights-on" work to reclaim team hours for high-impact projects.
-          </p>
-          <div class="contributors">
-            <span class="contributors-label">Lead:</span>
-            <span class="contributor">Khasim</span>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-month">Apr</span>
-              <span class="timeline-text">Scope opportunities & build POCs</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">May</span>
-              <span class="timeline-text">Launch!</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- AI Workflows -->
-        <div class="rock-card ai">
-          <div class="rock-header">
-            <h2 class="rock-title">AI Workflows <span class="arrow">→</span></h2>
-            <span class="priority-badge p2">P2</span>
-          </div>
-          <p class="rock-description">
-            Adapt Ads team's collaborative framework (shopify/ads-ds) for FP&A and FS. 
-            Enable seamless context sharing between teammates and LLMs to accelerate onboarding and execution speed.
-          </p>
-          <div class="contributors">
-            <span class="contributors-label">Lead:</span>
-            <span class="contributor">Khasim</span>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-month">Jan</span>
-              <span class="timeline-text">Experiment with Datanotebooks & repo structure</span>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-month">Feb</span>
-              <span class="timeline-text">Roadshow & invite team collaboration</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
 
       <!-- Feedback Section -->
       <section class="feedback-section">
         <h2 class="section-title">Feedback & Suggestions</h2>
         <p class="section-intro">Help us improve this page. Share your thoughts on structure, content, or priorities.</p>
-        
         <div class="feedback-form">
           <textarea id="feedbackInput" placeholder="Share your feedback or suggestions..."></textarea>
           <button id="submitFeedback" onclick="submitFeedback()">Submit Feedback</button>
         </div>
-
-        <div id="feedbackList" class="feedback-list">
-          <div class="feedback-loading">Loading feedback...</div>
-        </div>
+        <div id="feedbackList" class="feedback-list"><div class="feedback-loading">Loading feedback...</div></div>
       </section>
 
       <footer>
@@ -934,75 +725,42 @@
 
   <script src="/client/quick.js"></script>
   <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('open');
-    }
-
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
     const PAGE_ID = 'originations-risk';
-    let currentUser = null;
-    let feedbackCollection = null;
-
+    let currentUser = null, feedbackCollection = null;
     async function initFeedback() {
       try {
         currentUser = await quick.id.waitForUser();
         feedbackCollection = quick.db.collection('feedback');
         await loadFeedback();
-        feedbackCollection.subscribe({
-          onCreate: (doc) => { if (doc.page === PAGE_ID) addFeedbackToList(doc, true); }
-        });
-      } catch (error) {
-        document.getElementById('feedbackList').innerHTML = '<div class="feedback-empty">Unable to load feedback.</div>';
-      }
+        feedbackCollection.subscribe({ onCreate: (doc) => { if (doc.page === PAGE_ID) addFeedbackToList(doc, true); } });
+      } catch (e) { document.getElementById('feedbackList').innerHTML = '<div class="feedback-empty">Unable to load feedback.</div>'; }
     }
-
     async function loadFeedback() {
       const feedback = await feedbackCollection.where({ page: PAGE_ID }).find();
       const listEl = document.getElementById('feedbackList');
-      if (feedback.length === 0) {
-        listEl.innerHTML = '<div class="feedback-empty">No feedback yet. Be the first!</div>';
-        return;
-      }
+      if (feedback.length === 0) { listEl.innerHTML = '<div class="feedback-empty">No feedback yet. Be the first!</div>'; return; }
       feedback.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       listEl.innerHTML = '';
       feedback.forEach(item => addFeedbackToList(item, false));
     }
-
     function addFeedbackToList(item, prepend) {
       const listEl = document.getElementById('feedbackList');
-      const emptyMsg = listEl.querySelector('.feedback-empty');
-      if (emptyMsg) emptyMsg.remove();
+      const emptyMsg = listEl.querySelector('.feedback-empty'); if (emptyMsg) emptyMsg.remove();
       const initials = item.authorName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-      const timeAgo = getTimeAgo(new Date(item.created_at));
-      const el = document.createElement('div');
-      el.className = 'feedback-item';
-      el.innerHTML = `<div class="feedback-header"><div class="feedback-avatar">${initials}</div><div class="feedback-meta"><div class="feedback-author">${item.authorName}</div><div class="feedback-time">${timeAgo}</div></div></div><div class="feedback-content">${escapeHtml(item.content)}</div>`;
+      const el = document.createElement('div'); el.className = 'feedback-item';
+      el.innerHTML = `<div class="feedback-header"><div class="feedback-avatar">${initials}</div><div class="feedback-meta"><div class="feedback-author">${item.authorName}</div><div class="feedback-time">${getTimeAgo(new Date(item.created_at))}</div></div></div><div class="feedback-content">${escapeHtml(item.content)}</div>`;
       prepend ? listEl.prepend(el) : listEl.appendChild(el);
     }
-
     async function submitFeedback() {
-      const input = document.getElementById('feedbackInput');
-      const button = document.getElementById('submitFeedback');
-      const content = input.value.trim();
+      const input = document.getElementById('feedbackInput'), button = document.getElementById('submitFeedback'), content = input.value.trim();
       if (!content) return;
-      button.disabled = true;
-      button.textContent = 'Submitting...';
-      try {
-        await feedbackCollection.create({ page: PAGE_ID, content, authorName: currentUser.fullName || currentUser.email, authorEmail: currentUser.email });
-        input.value = '';
-      } catch (e) { alert('Failed to submit feedback.'); }
-      button.disabled = false;
-      button.textContent = 'Submit Feedback';
+      button.disabled = true; button.textContent = 'Submitting...';
+      try { await feedbackCollection.create({ page: PAGE_ID, content, authorName: currentUser.fullName || currentUser.email, authorEmail: currentUser.email }); input.value = ''; }
+      catch (e) { alert('Failed to submit feedback.'); }
+      button.disabled = false; button.textContent = 'Submit Feedback';
     }
-
-    function getTimeAgo(date) {
-      const s = Math.floor((new Date() - date) / 1000);
-      if (s < 60) return 'Just now';
-      if (s < 3600) return Math.floor(s / 60) + ' min ago';
-      if (s < 86400) return Math.floor(s / 3600) + ' hours ago';
-      if (s < 604800) return Math.floor(s / 86400) + ' days ago';
-      return date.toLocaleDateString();
-    }
-
+    function getTimeAgo(date) { const s = Math.floor((new Date() - date) / 1000); if (s < 60) return 'Just now'; if (s < 3600) return Math.floor(s / 60) + ' min ago'; if (s < 86400) return Math.floor(s / 3600) + ' hours ago'; if (s < 604800) return Math.floor(s / 86400) + ' days ago'; return date.toLocaleDateString(); }
     function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
     initFeedback();
   </script>
