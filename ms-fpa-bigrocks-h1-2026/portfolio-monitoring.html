@@ -21,7 +21,10 @@
       --accent-balance: #00d4aa;
       --accent-lending: #4dabf7;
       --accent-portfolio: #ffd93d;
-      --accent-team: #ffd93d;
+      --accent-strategic: #ffd93d;
+      --accent-analytics: #7c5cff;
+      --accent-kpi: #00d4aa;
+      --accent-ai: #4dabf7;
       --border: #2a2a3a;
       --sidebar-width: 220px;
     }
@@ -186,33 +189,128 @@
     }
 
     .team-badge-label { color: var(--text-muted); }
-    .team-badge-name { color: var(--accent-team); font-weight: 500; }
+    .team-badge-name { color: var(--accent-portfolio); font-weight: 500; }
 
-    .placeholder-section {
-      text-align: center;
-      padding: 80px 40px;
-      background: var(--bg-card);
-      border: 1px dashed var(--border);
-      border-radius: 16px;
+    /* Category Sections */
+    .category-section {
+      margin-bottom: 48px;
     }
 
-    .placeholder-icon {
-      font-size: 4rem;
-      margin-bottom: 24px;
-    }
-
-    .placeholder-title {
-      font-size: 1.5rem;
+    .category-title {
+      font-size: 1.3rem;
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--category-accent);
+    }
+
+    .category-title::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: var(--category-accent);
+      border-radius: 2px;
+    }
+
+    .category-section.strategic { --category-accent: var(--accent-strategic); }
+    .category-section.analytics { --category-accent: var(--accent-analytics); }
+    .category-section.kpi { --category-accent: var(--accent-kpi); }
+    .category-section.ai { --category-accent: var(--accent-ai); }
+
+    .rocks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .rock-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s;
+      border-left: 3px solid var(--category-accent);
+    }
+
+    .rock-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .rock-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .rock-title {
+      font-size: 1.1rem;
+      font-weight: 600;
       color: var(--text-primary);
     }
 
-    .placeholder-text {
-      font-size: 1rem;
+    .rock-badges {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .priority-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .priority-badge.p0 {
+      background: rgba(255, 107, 53, 0.2);
+      color: #ff8c5a;
+    }
+
+    .priority-badge.p1 {
+      background: rgba(255, 217, 61, 0.2);
+      color: #ffd93d;
+    }
+
+    .priority-badge.p2 {
+      background: rgba(138, 138, 154, 0.2);
+      color: #8a8a9a;
+    }
+
+    .timeline-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      background: var(--category-accent);
+      color: #0a0a0f;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .rock-description {
+      font-size: 0.9rem;
       color: var(--text-secondary);
-      max-width: 400px;
-      margin: 0 auto;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .contributors {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .contributor {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      color: var(--text-muted);
     }
 
     footer {
@@ -278,6 +376,7 @@
       .mobile-header { display: flex; justify-content: space-between; align-items: center; }
       .hamburger { display: block; }
       h1 { font-size: 2.2rem; }
+      .rocks-grid { grid-template-columns: 1fr; }
       .container { padding: 40px 20px; }
     }
   </style>
@@ -286,7 +385,7 @@
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <h2>MS FP&A & Risk</h2>
+      <h2>FS Finance & Risk</h2>
       <span>Big Rocks H1 2026</span>
     </div>
     <nav class="sidebar-nav">
@@ -330,7 +429,7 @@
     <div class="container">
       <header>
         <h1>Portfolio Monitoring</h1>
-        <p class="subtitle">Analytics & Reporting</p>
+        <p class="subtitle">Risk Analytics & Performance Insights</p>
         <div class="team-info">
           <div class="team-badge">
             <span class="team-badge-label">Team:</span>
@@ -339,11 +438,163 @@
         </div>
       </header>
 
-      <div class="placeholder-section">
-        <div class="placeholder-icon">📊</div>
-        <div class="placeholder-title">Coming Soon</div>
-        <div class="placeholder-text">Nelson will provide the team's H1 2026 Big Rocks and priorities shortly.</div>
-      </div>
+      <!-- 1. Strategic Frameworks -->
+      <section class="category-section strategic">
+        <h2 class="category-title">Strategic Frameworks</h2>
+        <div class="rocks-grid">
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Revamp Return Framework</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan</span>
+                <span class="priority-badge p0">P0</span>
+              </div>
+            </div>
+            <div class="rock-description">Update return framework for Capital Fixed, Capital Flex, Credit, and Unified Lending. Multi-product financial model refresh aligned with new product structures.</div>
+            <div class="contributors">
+              <span class="contributor">Nelson</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Centralize Financial Risk</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p0">P0</span>
+              </div>
+            </div>
+            <div class="rock-description">Expand risk lens beyond FS into all Merchant Services products. Build engagement model integrating best practices for forecasting and reporting losses holistically. Define attribution at merchant vs. FS product vs. other product levels.</div>
+            <div class="contributors">
+              <span class="contributor">Nelson</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Credit Economics Target Mapping</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
+            </div>
+            <div class="rock-description">Establish target economics for Credit given CDR, CEDP, and account takeover headwinds. Align financial targets with risk reality.</div>
+            <div class="contributors">
+              <span class="contributor">Nelson</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Risk Analytics & Modelling -->
+      <section class="category-section analytics">
+        <h2 class="category-title">Risk Analytics & Modelling</h2>
+        <div class="rocks-grid">
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Risk Group Bridge to Loss Rates</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
+            </div>
+            <div class="rock-description">Capital: Account for ongoing changes to risk model. Credit: Calibrate cohort risk group to CDR. Critical for accurate loss forecasting.</div>
+            <div class="contributors">
+              <span class="contributor">Erin</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">CDR Projection with GMV Model Backtest</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Jan</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
+            </div>
+            <div class="rock-description">Summarize findings comparing extrapolation method vs. GMV model method for CDR projection accuracy.</div>
+            <div class="contributors">
+              <span class="contributor">Erin</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Integrate Roll Rates into ALM 2.0</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p2">P2</span>
+              </div>
+            </div>
+            <div class="rock-description">Enhance CDR projection methodology with roll rate inputs. Improves accuracy of ALM 2.0 model for lending portfolio.</div>
+            <div class="contributors">
+              <span class="contributor">Nikita</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. KPI & Offer Generation Monitoring -->
+      <section class="category-section kpi">
+        <h2 class="category-title">KPI & Offer Generation Monitoring</h2>
+        <div class="rocks-grid">
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Credit KPI Monitoring</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p1">P1</span>
+              </div>
+            </div>
+            <div class="rock-description">Build next iteration of Credit risk monitoring overview. Comprehensive dashboards for tracking Credit product health.</div>
+            <div class="contributors">
+              <span class="contributor">Nikita</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Implement NITS Score Signals</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p2">P2</span>
+              </div>
+            </div>
+            <div class="rock-description">Integrate NITS score signals into offer generation. Enhances risk-based offer decisioning.</div>
+            <div class="contributors">
+              <span class="contributor">Nikita</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. AI Agent Refinement -->
+      <section class="category-section ai">
+        <h2 class="category-title">AI Agent Refinement</h2>
+        <div class="rocks-grid">
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Refine MBR Agent</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p2">P2</span>
+              </div>
+            </div>
+            <div class="rock-description">Connect to initiative tracker to produce top insights without manual filtering. Automates monthly business review preparation.</div>
+            <div class="contributors">
+              <span class="contributor">Nikita</span>
+            </div>
+          </div>
+          <div class="rock-card">
+            <div class="rock-header">
+              <div class="rock-title">Level-up Write-off Summary Agent</div>
+              <div class="rock-badges">
+                <span class="timeline-badge">Q1</span>
+                <span class="priority-badge p2">P2</span>
+              </div>
+            </div>
+            <div class="rock-description">Produce cross-product exposure insights. Automates analysis of write-off patterns across all FS products.</div>
+            <div class="contributors">
+              <span class="contributor">Erin</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Feedback Section -->
       <section class="feedback-section">
