@@ -223,7 +223,17 @@
       transition: all 0.25s;
       position: relative;
       overflow: hidden;
+      border-left: 3px solid var(--card-accent, var(--accent-primary));
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
+
+    .finance-card.originations { --card-accent: var(--accent-originations); }
+    .finance-card.balance { --card-accent: var(--accent-balance); }
+    .finance-card.lending { --card-accent: var(--accent-lending); }
+    .finance-card.portfolio { --card-accent: var(--accent-portfolio); }
+    .finance-card.cross-team { --card-accent: var(--accent-primary); }
 
     .finance-card::before {
       content: '';
@@ -232,7 +242,7 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-lending));
+      background: var(--card-accent, var(--accent-primary));
     }
 
     .finance-card:hover {
@@ -362,6 +372,26 @@
     .team-members {
       font-size: 0.85rem;
       color: var(--tile-accent);
+      margin-bottom: 16px;
+    }
+
+    .team-stats {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .team-stat {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      color: var(--text-muted);
+    }
+
+    .team-stat.p0 {
+      background: rgba(255, 107, 53, 0.15);
+      color: #ff8c5a;
     }
 
     .team-arrow {
@@ -617,78 +647,78 @@
           <p class="section-intro">Cross-functional initiatives spanning pricing, risk modeling, financial infrastructure, and automation. These projects drive foundational improvements across all lending and banking products.</p>
         </div>
         <div class="finance-grid">
-          <div class="finance-card">
+          <a href="portfolio-monitoring.html" class="finance-card portfolio">
             <h4>Return Framework Revamp</h4>
             <p>Unified return framework across Capital Fixed, Flex, Credit, and Unified Lending. Multi-product financial model refresh.</p>
             <div class="tags">
-              <span class="tag">All Teams</span>
-              <span class="tag">H1</span>
+              <span class="tag">Nelson</span>
+              <span class="tag">Jan</span>
             </div>
-          </div>
-          <div class="finance-card">
+          </a>
+          <a href="originations-risk.html" class="finance-card originations">
             <h4>RBP + LTV in Pricing</h4>
-            <p>Risk-based pricing rollout by geo (US/CA Jan, UK Feb, EU Mar) plus LTV integration assessment in Feb-Mar.</p>
+            <p>Risk-based pricing rollout by geo (US/CA Jan, UK/EU Feb) plus LTV integration assessment in Feb-Mar.</p>
             <div class="tags">
               <span class="tag">Shaunak</span>
-              <span class="tag">Jan-Mar</span>
+              <span class="tag">H1</span>
             </div>
-          </div>
-          <div class="finance-card">
+          </a>
+          <a href="lending.html" class="finance-card lending">
             <h4>Growth Accounting Framework</h4>
             <p>New methodology to measure Lending performance for renewals. Dashboard build and cross-team alignment.</p>
             <div class="tags">
               <span class="tag">Lucas</span>
               <span class="tag">Jan</span>
             </div>
-          </div>
-          <div class="finance-card">
+          </a>
+          <a href="balance-neobank.html" class="finance-card balance">
             <h4>Issuing Dispute Costs</h4>
             <p>Proper allocation of dispute costs across credit and balance cards. Merchant vs product level logic.</p>
             <div class="tags">
               <span class="tag">David · Michael</span>
-              <span class="tag">TBD</span>
+              <span class="tag">Q1</span>
             </div>
-          </div>
-          <div class="finance-card">
+          </a>
+          <a href="portfolio-monitoring.html" class="finance-card portfolio">
             <h4>Risk Group → Loss Rates</h4>
             <p>CDR curve model with terminal CDR estimation. Quarterly auto-refresh using rolling 24-month vintage window.</p>
             <div class="tags">
-              <span class="tag">Negin</span>
+              <span class="tag">Erin</span>
               <span class="tag">Jan</span>
             </div>
-          </div>
-          <div class="finance-card">
+          </a>
+          <a href="portfolio-monitoring.html" class="finance-card portfolio">
             <h4>Unified Financial Risk Team</h4>
-            <p>Expanding team coverage and capabilities beyond Financial Services into broader Shopify risk.</p>
+            <p>Expanding risk lens beyond FS into broader Merchant Services. Best practices for forecasting losses holistically.</p>
             <div class="tags">
-              <span class="tag">Cross-org</span>
-              <span class="tag">H1</span>
+              <span class="tag">Nelson</span>
+              <span class="tag">Q1</span>
             </div>
-          </div>
-          <div class="finance-card">
+          </a>
+          <a href="lending.html" class="finance-card lending">
             <h4>Capital Model Python (Cappy)</h4>
             <p>Converting spreadsheet financial model into Python. Improved reliability, version control, and automation.</p>
             <div class="tags">
               <span class="tag">Seb</span>
               <span class="tag">H1</span>
             </div>
-          </div>
-          <div class="finance-card">
+          </a>
+          <a href="balance-neobank.html" class="finance-card balance">
             <h4>Stripe APY Attribution</h4>
             <p>APY Sources & Uses reporting per latest MSA amendment. Shows how APY proceeds are allocated to merchants.</p>
             <div class="tags">
               <span class="tag">David · Michael</span>
-              <span class="tag">TBD</span>
+              <span class="tag">Q1</span>
             </div>
-          </div>
-          <div class="finance-card">
+          </a>
+          <a href="balance-neobank.html" class="finance-card balance">
             <h4>Balance APY Reporting</h4>
             <p>Comprehensive attribution reporting for Balance interest payments. Breakdown by merchant segment and source.</p>
             <div class="tags">
               <span class="tag">David · Michael</span>
-              <span class="tag">TBD</span>
+              <span class="tag">Q1</span>
             </div>
-          </div>
+          </a>
         </div>
       </section>
 
@@ -742,21 +772,37 @@
           <a href="originations-risk.html" class="team-tile originations">
             <div class="team-name">Originations Risk</div>
             <div class="team-members">Shaunak · Khasim · Negin</div>
+            <div class="team-stats">
+              <span class="team-stat">10 items</span>
+              <span class="team-stat p0">3 P0</span>
+            </div>
             <span class="team-arrow">→</span>
           </a>
           <a href="balance-neobank.html" class="team-tile balance">
             <div class="team-name">Balance & NeoBank</div>
             <div class="team-members">David · Michael</div>
+            <div class="team-stats">
+              <span class="team-stat">12 items</span>
+              <span class="team-stat p0">5 P0</span>
+            </div>
             <span class="team-arrow">→</span>
           </a>
           <a href="lending.html" class="team-tile lending">
             <div class="team-name">Lending FP&A</div>
             <div class="team-members">Lucas · Seb · Milan</div>
+            <div class="team-stats">
+              <span class="team-stat">12 items</span>
+              <span class="team-stat p0">4 P0</span>
+            </div>
             <span class="team-arrow">→</span>
           </a>
           <a href="portfolio-monitoring.html" class="team-tile portfolio">
             <div class="team-name">Portfolio Monitoring</div>
             <div class="team-members">Nelson · Erin · Nikita</div>
+            <div class="team-stats">
+              <span class="team-stat">10 items</span>
+              <span class="team-stat p0">2 P0</span>
+            </div>
             <span class="team-arrow">→</span>
           </a>
         </div>

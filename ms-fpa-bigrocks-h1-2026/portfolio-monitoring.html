@@ -313,6 +313,22 @@
       color: var(--text-muted);
     }
 
+    .related-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      margin-right: 12px;
+      font-size: 0.8rem;
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .related-link:hover { opacity: 0.7; }
+    .related-link.lending { color: var(--accent-lending); }
+    .related-link.originations { color: var(--accent-originations); }
+    .related-link.overview { color: var(--accent-primary); }
+
     footer {
       text-align: center;
       margin-top: 80px;
@@ -451,6 +467,7 @@
               </div>
             </div>
             <div class="rock-description">Update return framework for Capital Fixed, Capital Flex, Credit, and Unified Lending. Multi-product financial model refresh aligned with new product structures.</div>
+            <a href="index.html" class="related-link overview">↗ Overview: Big Finance Projects</a>
             <div class="contributors">
               <span class="contributor">Nelson</span>
             </div>
@@ -523,6 +540,7 @@
               </div>
             </div>
             <div class="rock-description">Enhance CDR projection methodology with roll rate inputs. Improves accuracy of ALM 2.0 model for lending portfolio.</div>
+            <a href="lending.html" class="related-link lending">↗ Lending: ALM 2.0 Model</a>
             <div class="contributors">
               <span class="contributor">Nikita</span>
             </div>

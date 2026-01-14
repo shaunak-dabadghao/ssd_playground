@@ -319,6 +319,22 @@
       color: var(--text-muted);
     }
 
+    .related-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      margin-right: 12px;
+      font-size: 0.8rem;
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .related-link:hover { opacity: 0.7; }
+    .related-link.balance { color: var(--accent-balance); }
+    .related-link.originations { color: var(--accent-originations); }
+    .related-link.portfolio { color: var(--accent-portfolio); }
+
     footer {
       text-align: center;
       margin-top: 80px;
@@ -539,6 +555,8 @@
               </div>
             </div>
             <div class="rock-description">Shipping new unified lending product that powers credit card and cash withdrawals. Business case development, experiment design, and financial modeling for the Unified Borrowing Line initiative.</div>
+            <a href="balance-neobank.html" class="related-link balance">↗ Balance: Unified Architecture</a>
+            <a href="originations-risk.html" class="related-link originations">↗ Originations: Credit Card Model</a>
             <div class="contributors">
               <span class="contributor">Milan</span>
             </div>
@@ -585,6 +603,7 @@
               </div>
             </div>
             <div class="rock-description">SQL model to track Lending Annualized Loan Margin. Critical infrastructure for measuring lending profitability and informing pricing decisions.</div>
+            <a href="portfolio-monitoring.html" class="related-link portfolio">↗ Portfolio: Roll Rates in ALM 2.0</a>
             <div class="contributors">
               <span class="contributor">Seb</span>
             </div>

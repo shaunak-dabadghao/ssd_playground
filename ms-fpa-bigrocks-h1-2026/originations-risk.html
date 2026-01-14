@@ -319,6 +319,23 @@
       color: var(--text-muted);
     }
 
+    .related-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      margin-right: 12px;
+      font-size: 0.8rem;
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .related-link:hover { opacity: 0.7; }
+    .related-link.balance { color: var(--accent-balance); }
+    .related-link.lending { color: var(--accent-lending); }
+    .related-link.portfolio { color: var(--accent-portfolio); }
+    .related-link.originations { color: var(--accent-originations); }
+
     /* Featured card timeline */
     .featured-grid {
       display: grid;
@@ -592,6 +609,7 @@
               </div>
             </div>
             <div class="rock-description">Taking over model ownership from Balance team (David & Michael). Critical for Unified Lending architecture – the new product that powers credit card and cash withdrawals. Focus on understanding, improvements, and adaptation for unified borrowing line.</div>
+            <a href="balance-neobank.html" class="related-link balance">↗ Balance: Model Transition</a>
             <div class="contributors">
               <span class="contributor">Khasim</span>
             </div>

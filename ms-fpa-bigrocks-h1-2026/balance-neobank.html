@@ -277,6 +277,20 @@
       color: var(--text-muted);
     }
 
+    .related-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      margin-right: 12px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .related-link:hover { opacity: 0.7; }
+    .related-link.originations { color: var(--accent-originations); }
+    .related-link.lending { color: var(--accent-lending); }
+
     .rock-header {
       display: flex;
       align-items: flex-start;
@@ -299,17 +313,17 @@
       font-weight: 500;
     }
 
-    .priority-badge.top {
+    .priority-badge.p0 {
       background: rgba(255, 107, 53, 0.2);
       color: #ff8c5a;
     }
 
-    .priority-badge.medium {
+    .priority-badge.p1 {
       background: rgba(255, 217, 61, 0.2);
       color: #ffd93d;
     }
 
-    .priority-badge.low {
+    .priority-badge.p2 {
       background: rgba(138, 138, 154, 0.2);
       color: #8a8a9a;
     }
@@ -473,10 +487,11 @@
               <div class="rock-title">Model Transition</div>
               <div class="rock-badges">
                 <span class="timeline-badge">Q1</span>
-                <span class="priority-badge medium">MEDIUM</span>
+                <span class="priority-badge p1">P1</span>
               </div>
             </div>
-            <div class="rock-description">Transition credit model ownership and responsibilities</div>
+            <div class="rock-description">Transition credit model ownership to Originations Risk team (Khasim). Critical handoff for Unified Lending architecture support.</div>
+            <a href="originations-risk.html" class="related-link originations">↗ Originations: Credit Card Model</a>
             <div class="contributors">
               <span class="contributor">David</span>
               <span class="contributor">Michael</span>
@@ -487,10 +502,11 @@
               <div class="rock-title">Unified Lending Architecture</div>
               <div class="rock-badges">
                 <span class="timeline-badge">Q2+</span>
-                <span class="priority-badge top">TOP</span>
+                <span class="priority-badge p0">P0</span>
               </div>
             </div>
-            <div class="rock-description">Support the new unified lending product architecture</div>
+            <div class="rock-description">FP&A support for the new unified borrowing line that powers credit card and cash withdrawals. Coordinating with Lending team (Milan) on financial modeling and experiment design.</div>
+            <a href="lending.html" class="related-link lending">↗ Lending: Unified Lending</a>
             <div class="contributors">
               <span class="contributor">David</span>
               <span class="contributor">Michael</span>
@@ -501,7 +517,7 @@
               <div class="rock-title">Issuing Dispute Costs</div>
               <div class="rock-badges">
                 <span class="timeline-badge">Q1</span>
-                <span class="priority-badge top">TOP</span>
+                <span class="priority-badge p0">P0</span>
               </div>
             </div>
             <div class="rock-description">Proper allocation of dispute costs across credit and balance cards</div>
@@ -522,7 +538,7 @@
               <div class="rock-title">APY Sources & Uses Reporting</div>
               <div class="rock-badges">
                 <span class="timeline-badge">Q1</span>
-                <span class="priority-badge top">TOP</span>
+                <span class="priority-badge p0">P0</span>
               </div>
             </div>
             <div class="rock-description">Reporting required by Stripe per the latest MSA amendment to show how APY proceeds are allocated to merchants</div>
@@ -536,7 +552,7 @@
               <div class="rock-title">Issuing Dispute Costs</div>
               <div class="rock-badges">
                 <span class="timeline-badge">Q1</span>
-                <span class="priority-badge top">TOP</span>
+                <span class="priority-badge p0">P0</span>
               </div>
             </div>
             <div class="rock-description">Proper allocation of dispute costs across credit and balance cards</div>
@@ -550,7 +566,7 @@
               <div class="rock-title">Account for New Costs</div>
               <div class="rock-badges">
                 <span class="timeline-badge">Q1</span>
-                <span class="priority-badge top">TOP</span>
+                <span class="priority-badge p0">P0</span>
               </div>
             </div>
             <div class="rock-description">Same Day ACH, Intl Payments, Issuing Dispute Fees, Domestic Outbound Wire Costs, Cash & Check Accept Fees</div>
@@ -571,10 +587,10 @@
               <div class="rock-title">Fraud Vectors Overview</div>
               <div class="rock-badges">
                 <span class="timeline-badge">Q2+</span>
-                <span class="priority-badge medium">MEDIUM</span>
+                <span class="priority-badge p1">P1</span>
               </div>
             </div>
-            <div class="rock-description">Comprehensive view of fraud vectors across products</div>
+            <div class="rock-description">Build comprehensive view of fraud vectors across all FS products. Supports the Banking Security initiative to protect merchant money and reduce fraud losses.</div>
             <div class="contributors">
               <span class="contributor">David</span>
               <span class="contributor">Michael</span>
@@ -605,10 +621,10 @@
               <div class="rock-title">Shop Ads Billing Integration</div>
               <div class="rock-badges">
                 <span class="timeline-badge">Q2+</span>
-                <span class="priority-badge medium">MEDIUM</span>
+                <span class="priority-badge p1">P1</span>
               </div>
             </div>
-            <div class="rock-description">Incorporate Shop Ads into billing systems</div>
+            <div class="rock-description">Incorporate Shop Ads into billing systems. Enables programmatic billing thresholds so merchants are not billed more frequently than weekly.</div>
             <div class="contributors">
               <span class="contributor">David</span>
               <span class="contributor">Michael</span>
@@ -619,10 +635,10 @@
               <div class="rock-title">Billing COGS Forecast</div>
               <div class="rock-badges">
                 <span class="timeline-badge">Q2+</span>
-                <span class="priority-badge medium">MEDIUM</span>
+                <span class="priority-badge p1">P1</span>
               </div>
             </div>
-            <div class="rock-description">Forecast billing COGS including Shop Ads</div>
+            <div class="rock-description">Forecast billing COGS including Shop Ads. Part of broader Shop Campaigns forecast work with Ads team.</div>
             <div class="contributors">
               <span class="contributor">David</span>
               <span class="contributor">Michael</span>
@@ -633,7 +649,7 @@
               <div class="rock-title">Chargeback Monitoring</div>
               <div class="rock-badges">
                 <span class="timeline-badge">Q2+</span>
-                <span class="priority-badge low">MED-LOW</span>
+                <span class="priority-badge p2">P2</span>
               </div>
             </div>
             <div class="rock-description">Regular monitoring and remediation of billing chargebacks (outside urgent incidents)</div>
