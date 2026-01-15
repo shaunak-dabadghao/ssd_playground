@@ -208,75 +208,17 @@
       line-height: 1.7;
     }
 
-    /* Team P0 Priorities Grid */
-    .p0-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .p0-column {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-      border-top: 3px solid var(--column-accent, var(--accent-primary));
-    }
-
-    .p0-column.originations { --column-accent: var(--accent-originations); }
-    .p0-column.balance { --column-accent: var(--accent-balance); }
-    .p0-column.lending { --column-accent: var(--accent-lending); }
-    .p0-column.portfolio { --column-accent: var(--accent-portfolio); }
-
-    .p0-column-header {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--column-accent);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .p0-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: inherit;
-      transition: opacity 0.2s;
-    }
-
-    .p0-item:last-child { border-bottom: none; }
-    .p0-item:hover { opacity: 0.7; }
-
-    .p0-item-title {
-      font-size: 0.85rem;
-      color: var(--text-primary);
-    }
-
-    .p0-item-timeline {
-      font-size: 0.7rem;
-      padding: 2px 6px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 4px;
-      color: var(--text-muted);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* Strategic Themes Grid */
+    /* Major FP&A Initiatives Grid */
     .themes-row-1 {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
       margin-bottom: 20px;
     }
 
     .themes-row-2 {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
     }
 
@@ -525,7 +467,7 @@
       .mobile-header { display: flex; justify-content: space-between; align-items: center; }
       .hamburger { display: block; }
       h1 { font-size: 2rem; }
-      .p0-grid, .themes-row-1, .themes-row-2, .roadmap-grid, .team-grid { grid-template-columns: 1fr; }
+      .themes-row-1, .themes-row-2, .roadmap-grid, .team-grid { grid-template-columns: 1fr; }
       .container { padding: 40px 20px; }
     }
   </style>
@@ -582,88 +524,10 @@
         <p class="org-info">Led by Raymond Lee</p>
       </header>
 
-      <!-- Team P0 Priorities -->
+      <!-- Major FP&A Initiatives -->
       <section class="section">
         <div class="section-header">
-          <h2 class="section-title">Team P0 Priorities</h2>
-          <p class="section-intro">Highest priority items across all teams for H1 2026.</p>
-        </div>
-        <div class="p0-grid">
-          <div class="p0-column originations">
-            <div class="p0-column-header">Originations Risk</div>
-            <a href="originations-risk.html" class="p0-item">
-              <span class="p0-item-title">Pricing Refresh with GRM</span>
-              <span class="p0-item-timeline">H1</span>
-            </a>
-            <a href="originations-risk.html" class="p0-item">
-              <span class="p0-item-title">Credit Card Model</span>
-              <span class="p0-item-timeline">Q1-Q2</span>
-            </a>
-            <a href="originations-risk.html" class="p0-item">
-              <span class="p0-item-title">Urgent Circumstances</span>
-              <span class="p0-item-timeline">Jan</span>
-            </a>
-          </div>
-          <div class="p0-column balance">
-            <div class="p0-column-header">Balance & NeoBank</div>
-            <a href="balance-neobank.html" class="p0-item">
-              <span class="p0-item-title">Unified Lending Architecture</span>
-              <span class="p0-item-timeline">Q2+</span>
-            </a>
-            <a href="balance-neobank.html" class="p0-item">
-              <span class="p0-item-title">Issuing Dispute Costs</span>
-              <span class="p0-item-timeline">Q1</span>
-            </a>
-            <a href="balance-neobank.html" class="p0-item">
-              <span class="p0-item-title">APY Sources & Uses</span>
-              <span class="p0-item-timeline">Q1</span>
-            </a>
-            <a href="balance-neobank.html" class="p0-item">
-              <span class="p0-item-title">Account for New Costs</span>
-              <span class="p0-item-timeline">Q1</span>
-            </a>
-          </div>
-          <div class="p0-column lending">
-            <div class="p0-column-header">Lending FP&A</div>
-            <a href="lending.html" class="p0-item">
-              <span class="p0-item-title">2026 Goals & Target Setting</span>
-              <span class="p0-item-timeline">Jan</span>
-            </a>
-            <a href="lending.html" class="p0-item">
-              <span class="p0-item-title">0% APR Small Merchant Promo</span>
-              <span class="p0-item-timeline">Mar</span>
-            </a>
-            <a href="lending.html" class="p0-item">
-              <span class="p0-item-title">EU Expansion - France</span>
-              <span class="p0-item-timeline">Q1</span>
-            </a>
-            <a href="lending.html" class="p0-item">
-              <span class="p0-item-title">Lending Growth Framework</span>
-              <span class="p0-item-timeline">Jan</span>
-            </a>
-            <a href="lending.html" class="p0-item">
-              <span class="p0-item-title">ALM 2.0 Model</span>
-              <span class="p0-item-timeline">Jan</span>
-            </a>
-          </div>
-          <div class="p0-column portfolio">
-            <div class="p0-column-header">Portfolio Monitoring</div>
-            <a href="portfolio-monitoring.html" class="p0-item">
-              <span class="p0-item-title">Revamp Return Framework</span>
-              <span class="p0-item-timeline">Jan</span>
-            </a>
-            <a href="portfolio-monitoring.html" class="p0-item">
-              <span class="p0-item-title">Centralize Financial Risk</span>
-              <span class="p0-item-timeline">Q1</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Strategic Initiatives by Theme -->
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">Strategic Initiatives</h2>
+          <h2 class="section-title">Major FP&A Initiatives</h2>
           <p class="section-intro">Cross-functional initiatives grouped by theme, spanning pricing, risk, product, and automation.</p>
         </div>
         <div class="themes-row-1">
@@ -684,23 +548,35 @@
               <span class="theme-title">Strategic Frameworks</span>
             </div>
             <div class="theme-items">
-              <a href="portfolio-monitoring.html" class="theme-item"><span class="theme-dot portfolio"></span>Revamp Return Framework</a>
-              <a href="portfolio-monitoring.html" class="theme-item"><span class="theme-dot portfolio"></span>Centralize Financial Risk</a>
-              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>Lending Growth Framework</a>
-              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>2026 Goals & Target Setting</a>
-              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>ALM 2.0 Model</a>
+              <a href="portfolio-monitoring.html" class="theme-item"><span class="theme-dot portfolio"></span>Revamp Return Framework - ALM 2.0</a>
+              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>Lending LTV for Decision-Making</a>
             </div>
           </div>
           <div class="theme-card large">
             <div class="theme-card-header">
-              <span class="theme-icon">🔗</span>
-              <span class="theme-title">Unified Lending & Product</span>
+              <span class="theme-icon">📈</span>
+              <span class="theme-title">Product - Financial Analytics</span>
             </div>
             <div class="theme-items">
               <a href="balance-neobank.html" class="theme-item"><span class="theme-dot balance"></span>Unified Lending Architecture</a>
-              <a href="originations-risk.html" class="theme-item"><span class="theme-dot originations"></span>Credit Card Model</a>
-              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>Unified Lending</a>
-              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>Complete Flex</a>
+              <a href="originations-risk.html" class="theme-item"><span class="theme-dot originations"></span>Right-size Credit Card Unit Economics</a>
+              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>EU Expansion - France</a>
+              <a href="balance-neobank.html" class="theme-item"><span class="theme-dot balance"></span>Neobank for Banking, Lending</a>
+              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>Complete Flex Roll-out</a>
+              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>Small Merchant Lending</a>
+              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>Upmarket Growth Initiatives</a>
+            </div>
+          </div>
+          <div class="theme-card large">
+            <div class="theme-card-header">
+              <span class="theme-icon">📋</span>
+              <span class="theme-title">Finance Fundamentals</span>
+            </div>
+            <div class="theme-items">
+              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>2026 Goals & Target Setting</a>
+              <span class="theme-item"><span class="theme-dot portfolio"></span>Weekly and Monthly Business Reviews</span>
+              <span class="theme-item"><span class="theme-dot portfolio"></span>Centralize / Rationalize FS Dashboards</span>
+              <span class="theme-item"><span class="theme-dot portfolio"></span>On-going Quarterly Forecasts</span>
             </div>
           </div>
         </div>
@@ -719,20 +595,11 @@
           </div>
           <div class="theme-card small">
             <div class="theme-card-header">
-              <span class="theme-icon">🌍</span>
-              <span class="theme-title">Geo Expansion</span>
-            </div>
-            <div class="theme-items">
-              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>EU Expansion - France</a>
-            </div>
-          </div>
-          <div class="theme-card small">
-            <div class="theme-card-header">
               <span class="theme-icon">⚙️</span>
               <span class="theme-title">FP&A Automation</span>
             </div>
             <div class="theme-items">
-              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>Cappy (Python Model)</a>
+              <a href="lending.html" class="theme-item"><span class="theme-dot lending"></span>Lending Model Rebuild</a>
               <a href="originations-risk.html" class="theme-item"><span class="theme-dot originations"></span>Python Automation</a>
               <a href="originations-risk.html" class="theme-item"><span class="theme-dot originations"></span>AI Workflows</a>
               <a href="portfolio-monitoring.html" class="theme-item"><span class="theme-dot portfolio"></span>MBR Agent</a>
@@ -742,11 +609,12 @@
           <div class="theme-card small">
             <div class="theme-card-header">
               <span class="theme-icon">🔒</span>
-              <span class="theme-title">Fraud & Security</span>
+              <span class="theme-title">Portfolio Risk Monitoring</span>
             </div>
             <div class="theme-items">
               <a href="balance-neobank.html" class="theme-item"><span class="theme-dot balance"></span>Fraud Vectors Overview</a>
               <a href="balance-neobank.html" class="theme-item"><span class="theme-dot balance"></span>Fraud Documentation</a>
+              <a href="portfolio-monitoring.html" class="theme-item"><span class="theme-dot portfolio"></span>Centralize Financial Risk Monitoring</a>
             </div>
           </div>
           <div class="theme-card small">
@@ -756,8 +624,55 @@
             </div>
             <div class="theme-items">
               <a href="originations-risk.html" class="theme-item"><span class="theme-dot originations"></span>WebBank Contract</a>
+              <span class="theme-item"><span class="theme-dot originations"></span>International Payments & Expansion</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- Team Big Rocks -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Team Big Rocks</h2>
+          <p class="section-intro">Explore detailed priorities for each team within Financial Services Finance and Risk.</p>
+        </div>
+        <div class="team-grid">
+          <a href="originations-risk.html" class="team-tile originations">
+            <div class="team-name">Originations Risk</div>
+            <div class="team-members">Shaunak · Khasim · Negin</div>
+            <div class="team-stats">
+              <span class="team-stat">10 items</span>
+              <span class="team-stat p0">3 P0</span>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="balance-neobank.html" class="team-tile balance">
+            <div class="team-name">Balance & NeoBank</div>
+            <div class="team-members">David · Michael</div>
+            <div class="team-stats">
+              <span class="team-stat">12 items</span>
+              <span class="team-stat p0">5 P0</span>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="lending.html" class="team-tile lending">
+            <div class="team-name">Lending FP&A</div>
+            <div class="team-members">Lucas · Seb · Milan</div>
+            <div class="team-stats">
+              <span class="team-stat">12 items</span>
+              <span class="team-stat p0">4 P0</span>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
+          <a href="portfolio-monitoring.html" class="team-tile portfolio">
+            <div class="team-name">Portfolio Monitoring</div>
+            <div class="team-members">Nelson · Erin · Nikita</div>
+            <div class="team-stats">
+              <span class="team-stat">10 items</span>
+              <span class="team-stat p0">2 P0</span>
+            </div>
+            <span class="team-arrow">→</span>
+          </a>
         </div>
       </section>
 
@@ -798,52 +713,6 @@
             <h4>Banking Security</h4>
             <p>State of the art platform to protect merchant money and Shopify from fraud losses and compliance risk. Comprehensive fraud vectors overview.</p>
           </div>
-        </div>
-      </section>
-
-      <!-- Team Big Rocks -->
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">Team Big Rocks</h2>
-          <p class="section-intro">Explore detailed priorities for each team within Merchant Services FP&A and Risk.</p>
-        </div>
-        <div class="team-grid">
-          <a href="originations-risk.html" class="team-tile originations">
-            <div class="team-name">Originations Risk</div>
-            <div class="team-members">Shaunak · Khasim · Negin</div>
-            <div class="team-stats">
-              <span class="team-stat">10 items</span>
-              <span class="team-stat p0">3 P0</span>
-            </div>
-            <span class="team-arrow">→</span>
-          </a>
-          <a href="balance-neobank.html" class="team-tile balance">
-            <div class="team-name">Balance & NeoBank</div>
-            <div class="team-members">David · Michael</div>
-            <div class="team-stats">
-              <span class="team-stat">12 items</span>
-              <span class="team-stat p0">5 P0</span>
-            </div>
-            <span class="team-arrow">→</span>
-          </a>
-          <a href="lending.html" class="team-tile lending">
-            <div class="team-name">Lending FP&A</div>
-            <div class="team-members">Lucas · Seb · Milan</div>
-            <div class="team-stats">
-              <span class="team-stat">12 items</span>
-              <span class="team-stat p0">4 P0</span>
-            </div>
-            <span class="team-arrow">→</span>
-          </a>
-          <a href="portfolio-monitoring.html" class="team-tile portfolio">
-            <div class="team-name">Portfolio Monitoring</div>
-            <div class="team-members">Nelson · Erin · Nikita</div>
-            <div class="team-stats">
-              <span class="team-stat">10 items</span>
-              <span class="team-stat p0">2 P0</span>
-            </div>
-            <span class="team-arrow">→</span>
-          </a>
         </div>
       </section>
 
