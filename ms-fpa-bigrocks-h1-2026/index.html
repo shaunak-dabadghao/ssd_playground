@@ -208,6 +208,50 @@
       line-height: 1.7;
     }
 
+    /* Top 3 Big Rocks */
+    .top3-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .top3-card {
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.08) 0%, rgba(124, 92, 255, 0.02) 100%);
+      border: 1px solid rgba(124, 92, 255, 0.3);
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top3-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), #a78bfa);
+    }
+
+    .top3-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      opacity: 0.3;
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .top3-content {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
     /* Major FP&A Initiatives Grid */
     .themes-row-1 {
       display: grid;
@@ -467,7 +511,7 @@
       .mobile-header { display: flex; justify-content: space-between; align-items: center; }
       .hamburger { display: block; }
       h1 { font-size: 2rem; }
-      .themes-row-1, .themes-row-2, .roadmap-grid, .team-grid { grid-template-columns: 1fr; }
+      .top3-grid, .themes-row-1, .themes-row-2, .roadmap-grid, .team-grid { grid-template-columns: 1fr; }
       .container { padding: 40px 20px; }
     }
   </style>
@@ -491,7 +535,7 @@
         <div class="nav-section-title">Teams</div>
         <a href="originations-risk.html" class="nav-link originations">
           <span class="dot"></span>
-          Originations Risk
+          Originations: Pricing, OfferGen & Risk
         </a>
         <a href="balance-neobank.html" class="nav-link balance">
           <span class="dot"></span>
@@ -503,7 +547,7 @@
         </a>
         <a href="portfolio-monitoring.html" class="nav-link portfolio">
           <span class="dot"></span>
-          Portfolio Monitoring
+          Centralized Risk Analytics
         </a>
       </div>
     </nav>
@@ -523,6 +567,27 @@
         <p class="subtitle">Financial Services – Finance and Risk</p>
         <p class="org-info">Led by Raymond Lee</p>
       </header>
+
+      <!-- Top 3 Big Rocks -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Top 3 Big Rocks for FS Finance and Risk</h2>
+        </div>
+        <div class="top3-grid">
+          <div class="top3-card">
+            <span class="top3-number">01</span>
+            <div class="top3-content">Rearchitect our risk adjusted return LTV framework</div>
+          </div>
+          <div class="top3-card">
+            <span class="top3-number">02</span>
+            <div class="top3-content">Centralize loss monitoring, risk simulation analytics, and forecasting across Shopify</div>
+          </div>
+          <div class="top3-card">
+            <span class="top3-number">03</span>
+            <div class="top3-content">Drive sustainable product economics (pricing, cost dynamics, commercial negotiations)</div>
+          </div>
+        </div>
+      </section>
 
       <!-- Major FP&A Initiatives -->
       <section class="section">
@@ -638,7 +703,7 @@
         </div>
         <div class="team-grid">
           <a href="originations-risk.html" class="team-tile originations">
-            <div class="team-name">Originations Risk</div>
+            <div class="team-name">Originations: Pricing, OfferGen & Risk</div>
             <div class="team-members">Shaunak · Khasim · Negin</div>
             <div class="team-stats">
               <span class="team-stat">10 items</span>
@@ -665,7 +730,7 @@
             <span class="team-arrow">→</span>
           </a>
           <a href="portfolio-monitoring.html" class="team-tile portfolio">
-            <div class="team-name">Portfolio Monitoring</div>
+            <div class="team-name">Centralized Risk Analytics</div>
             <div class="team-members">Nelson · Erin · Nikita</div>
             <div class="team-stats">
               <span class="team-stat">10 items</span>
