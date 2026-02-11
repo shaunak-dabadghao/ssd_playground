@@ -2,6 +2,8 @@
 
 Weekly execution monitoring for Shopify Capital offer generation: check that **published offers** adhere to the WebBank Shopify Capital 2.0 Credit Policy.
 
+**Scope:** **Fixed Fee product only.** Flex will have a separate monitoring system.
+
 ## Data sources (BigQuery)
 
 | Alias | Table | Purpose |
@@ -12,23 +14,24 @@ Weekly execution monitoring for Shopify Capital offer generation: check that **p
 
 ## Contents
 
-- **[PLAN.md](./PLAN.md)** – Full design: data model, rule framework, violation schema, execution options, and **18 policy-derived rules (R01–R18)** with check logic.
-- Rules are product-aware (Fixed Fee vs Flex); some are offer-level (cog), others post-funding (cf + cfds).
+- **[PLAN.md](./PLAN.md)** – Full design: data model, rule framework, violation schema, execution options, and policy-derived rules.
+- **[RULES_FIXED_FEE.md](./RULES_FIXED_FEE.md)** – **Selected Fixed Fee rules:** spec and check logic for the 5 rules we monitor.
+- **[sql/](./sql/)** – BigQuery SQL for each rule (offer-level and post-funding).
 
-## Rule summary (from policy 2025-2-6)
+## Fixed Fee rules we monitor (selected)
 
-| ID | Scope | Summary |
-|----|--------|--------|
-| R01–R03 | Fixed Fee | Amount [$200, $2M], factor rate [3%, 21%], remittance [4%, 35%] |
-| R04–R07 | Flex | Amount [$200, $500K], min withdrawal $200, APR [10%, 50%], remittance [4%, 35%] |
-| R08–R11 | Product assignment | GMV and risk-group eligibility (Flex: GMV $50K–$1.75M, RG 1–7) |
-| R12 | All | Max remittance ≤ calibration rate by risk group & GMV |
-| R13–R14 | All | USD + US only; no staff shops |
-| R15–R17 | Post-origination | AFR ≤ 80%; Fixed Fee min payment schedule; renewal paid-in ≥ 51% |
-| R18 | Monitoring | High risk + high GMV bypass rate (RG 10, GMV $100K–$1.75M) |
+| # | Rule ID | Description |
+|---|---------|-------------|
+| 1 | R01 | Fixed Fee amount in [$200, $2,000,000] USD |
+| 2 | R02 | Fixed Fee factor rate in [3%, 21%] |
+| 3 | R03+R12 | Fixed Fee remittance: [4%, 35%] and ≤ calibration rate by risk group, GMV, Shopify Credit |
+| 4 | R10 | Fixed Fee risk groups 1–10 only |
+| 5 | R17 | Renewal: ≥51% of prior total payment repaid before new funding |
+
+**Dropped (out of scope for this system):** R08 (GMV), R13 (currency/region), R14 (staff shop), R15 (AFR cap), R16 (payment schedule), R18 (high risk + high GMV bypass; checked upstream).
 
 ## Next steps
 
 1. Create results table and “published this week” cohort.
-2. Implement rule runner and parameterized SQL for each rule.
-3. Add weekly report and optional alerts.
+2. Run rule SQL (e.g. weekly) and write violations to results table.
+3. Weekly report and optional alerts.
